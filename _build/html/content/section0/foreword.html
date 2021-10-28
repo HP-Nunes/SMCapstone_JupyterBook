@@ -1,0 +1,464 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bike-Sharing in the United States &#8212; Bay Wheels Data Analysis</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script kind="utterances">
+
+    var commentsRunWhenDOMLoaded = cb => {
+    if (document.readyState != 'loading') {
+        cb()
+    } else if (document.addEventListener) {
+        document.addEventListener('DOMContentLoaded', cb)
+    } else {
+        document.attachEvent('onreadystatechange', function() {
+        if (document.readyState == 'complete') cb()
+        })
+    }
+}
+
+var addUtterances = () => {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "https://utteranc.es/client.js";
+    script.async = "async";
+
+    script.setAttribute("repo", "github-org/github-repo");
+    script.setAttribute("issue-term", "pathname");
+    script.setAttribute("theme", "github-light");
+    script.setAttribute("label", "💬 comment");
+    script.setAttribute("crossorigin", "anonymous");
+
+    sections = document.querySelectorAll("div.section");
+    if (sections !== null) {
+        section = sections[sections.length-1];
+        section.appendChild(script);
+    }
+}
+commentsRunWhenDOMLoaded(addUtterances);
+</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="ETL Process" href="../section1/ETL.html" />
+    <link rel="prev" title="SharpestMinds Capstone" href="../../intro.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Bay Wheels Data Analysis</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../intro.html">
+   SharpestMinds Capstone
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Bike-Sharing in the United States
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Data Wrangling 1️⃣
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../section1/ETL.html">
+   ETL Process
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../section1/subsection/1_extract.html">
+     1. Extraction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../section1/subsection/2_transform.html">
+     2. Transformation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../section1/subsection/3_load.html">
+     3. Load
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Descriptive Data Analysis 2️⃣ 🚧
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../section2/temporal_trends.html">
+   Temporal Trends
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../section2/subsection/insight_time.html">
+     Temporal Trends
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../section2/subsection/dataViz_notebook.html">
+     Data Visualizations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../section2/spatial_trends.html">
+   Spatial Trends
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../section2/subsection/insight_location.html">
+     Trends By Locations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../section2/revenue_trends.html">
+   Revenue Trends
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../section2/subsection/insight_revenue.html">
+     Estimating 2019 Revenue
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Predictive Modelling 3️⃣ 🚧
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../section3/machineLearning.html">
+   Machine Learning, Test 1
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/content/section0/foreword.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fcontent/section0/foreword.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/executablebooks/jupyter-book/edit/master/docs/content/section0/foreword.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#docked-vs-dockless-fleets">
+   Docked Vs. Dockless Fleets
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="bike-sharing-in-the-united-states">
+<h1>Bike-Sharing in the United States<a class="headerlink" href="#bike-sharing-in-the-united-states" title="Permalink to this headline">¶</a></h1>
+<p>There is a growing need in urban spaces for alternatives to traditional modes of transportation, due to a convergence of factors such as: increase in urban population density, over-impacted public transportation systems, endemic air pollution, imperatives to curb greenhouse gas emissions, and prohibitive costs of car ownership.</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Micromobility">Micromobility</a>, fully or partially human-powered vehicles such as bikes or scooters operating at speeds under 25 km/h (15 mph), can fill some of the urban transportation gaps. It is a rapidly growing industry, accounting for 84 million trips in 2018, twice the number of trips compared to the previous year<sup><a class="reference external" href="#myfootnote1">1</a></sup>. Its market-size was valued at USD 3.1 billion in 2018, with a forecasted compound annual growth rate of 17% as of 2020<sup><a class="reference external" href="#myfootnote2">2</a></sup>.</p>
+<p>Bike-sharing predominates in large, densely populated metropoles such as New York City, accounting for 40% of all bike trips in 2017 alone<sup><a class="reference external" href="#myfootnote3">3</a></sup>. Six cities accounted for 84% of all station-based bike share trips in 2018 (see plot below):</p>
+<p><img alt="" src="content/section0/img/Station-Based-Bike-Share-Ridership.png" />
+<a class="reference external" href="https://nacto.org/shared-micromobility-2018/">source</a></p>
+<p>According to an industry firm’s study, micromobile options such as bikes and scooters could replace 50% of short-distance (0-3 miles) vehicle trips in the U.S.<sup><a class="reference external" href="#myfootnote4">4</a></sup>. In its ranking of U.S. cities with the greatest micromobility potential (including efficient and cost-effective travel, reduced traffic congestion, decreased emissions and a boost to the local economy), the firm ranked San Francisco in 10th<sup><a class="reference external" href="#myfootnote5">5</a></sup>.</p>
+<p>While bike-sharing systems tend to be public-private partnerships, ridesharing companies Lyft and Uber have entered the micromobility market, and seek to set the tone for the industry. Uber’s strategy, for instance, is to build and own the whole of the transportation’s “ecosystem” into its app, providing an array of transportation modes ranging from rideshare to electric scooters and bikes. To do so, private companies need to approach city’s officials with tact, and make the case for their services as beneficiary to public transit infrastructure<sup><a class="reference external" href="#myfootnote6">6</a></sup>.</p>
+<img src= "./img/deloitte.png" width="300" height="100" />
+<p><a class="reference external" href="https://medium.com/micromobility/the-bull-case-for-micromobility-15c43ebf7381">source</a></p>
+<p>Although the market of micromobility is still maturing, it remains to be seen how the industry will evolve with the disturbances of daily-life brought upon by the COVID-19 pandemic.</p>
+<div class="section" id="docked-vs-dockless-fleets">
+<h2>Docked Vs. Dockless Fleets<a class="headerlink" href="#docked-vs-dockless-fleets" title="Permalink to this headline">¶</a></h2>
+<p><img alt="" src="content/section0/img/docked.jpg" /></p>
+<p><a class="reference external" href="https://twitter.com/baywheels/status/1199031957822291973">source</a></p>
+<p>The formative model of bike-sharing was docked: rent a docked-bike at a pick-station, and drop-it off at the nearest drop-off station to your destination. Dockless bikes remove this barrier, since these bikes are not bounded to a station. This has the advantage of widening the scope of mobility for commuters, requiring just the app to geolocate and borrow the nearest bike. However this poses challenges for operators (in terms of durability, maintenance etc.) and cities, such as added clutter on sidewalks (an issue similar to the highly publicized roll-out of e-scooters, for instance).</p>
+<p>Dockless bikes are designed for short, spontaneous trips, such as a commuter first-or-last mile option. They also present a much cheaper alternative to a potential bus trip or traditional bike share daily pricing scheme<sup><a class="reference external" href="#myfootnote7">7</a></sup>.</p>
+<p><img alt="" src="content/section0/img/dockless.jpg" /></p>
+<p><a class="reference external" href="https://techcrunch.com/2019/07/21/lyft-e-bikes-san-francisco/">source</a></p>
+<summary><b>Endnotes</b></summary>
+<br>
+<a name="myfootnote1">1</a>: https://nacto.org/program/bike-share-initiative/
+<br>
+<a name="myfootnote2">2</a>: https://tinyurl.com/y67cy6tj
+<br>
+<a name="myfootnote3">3</a>: https://www.wired.com/story/americans-falling-in-love-bike-share/
+<br>
+<a name="myfootnote4">4</a>: http://www2.inrix.com/micromobility-study-2019
+<br>
+<a name="myfootnote5">5</a>: https://inrix.com/press-releases/micromobility-study-us-2019/
+<br>
+<a name="myfootnote6">6</a>: https://www.wired.com/story/uber-bid-dominance-mobility/?mbid=BottomRelatedStories
+<br> 
+<a name="myfootnote7">7</a>: https://blog.altaplanning.com/the-dockless-bike-share-revolution-eb62698d81f8</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./content/section0"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="../../intro.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">SharpestMinds Capstone</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="../section1/ETL.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">ETL Process</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By HP-Nunes<br/>
+        
+            &copy; Copyright 2021.<br/>
+          <div class="extra_footer">
+            <script>mermaid.init();</script> <div class="container-lg mt-3"> <div class="row"> <div class="footerImages"> <a href="https://github.com/HP-Nunes" target="_blank"><img src="https://img.shields.io/badge/github%20-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white" alt="GitHub"></a> <a href="https://twitter.com/geocuriosity" target="_blank"><img src="https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white" alt="@geocuriosity"></a> <a href="https://www.linkedin.com/in/hp-nunes/" target="_blank"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"></a> <a class="reference external" href="https://jupyter.org/try" target="_blank"><img src="https://img.shields.io/badge/Made%20with-Jupyter-orange?style=for-the-badge&logo=Jupyter" alt="Made withJupyter"></a> </div> <div class="container-lg mt-3"> <a href="mailto:contact@hpnunes.com"><img src="https://img.shields.io/badge/Contact%20me-contact%40hpnunes.com-9cf" alt="contact@hpnunes.com"></a> <a href="https://hpnunes.com/" target="_blank"><img src="https://img.shields.io/badge/My%20website-https%3A%2F%2Fhpnunes.com%2F-blue" alt="https://hpnunes.com/"></a> <a href="https://github.com/HP-Nunes/HP-Nunes.github.io" target="_blank"><img src="https://img.shields.io/github/last-commit/HP-Nunes/HP-Nunes.github.io" alt="update to project's repo"></a> </div> <div class="row_footer my-3"> © 2021 </div>
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

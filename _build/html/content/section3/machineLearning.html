@@ -1,0 +1,984 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Machine Learning, Test 1 &#8212; Bay Wheels Data Analysis</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script kind="utterances">
+
+    var commentsRunWhenDOMLoaded = cb => {
+    if (document.readyState != 'loading') {
+        cb()
+    } else if (document.addEventListener) {
+        document.addEventListener('DOMContentLoaded', cb)
+    } else {
+        document.attachEvent('onreadystatechange', function() {
+        if (document.readyState == 'complete') cb()
+        })
+    }
+}
+
+var addUtterances = () => {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "https://utteranc.es/client.js";
+    script.async = "async";
+
+    script.setAttribute("repo", "github-org/github-repo");
+    script.setAttribute("issue-term", "pathname");
+    script.setAttribute("theme", "github-light");
+    script.setAttribute("label", "💬 comment");
+    script.setAttribute("crossorigin", "anonymous");
+
+    sections = document.querySelectorAll("div.section");
+    if (sections !== null) {
+        section = sections[sections.length-1];
+        section.appendChild(script);
+    }
+}
+commentsRunWhenDOMLoaded(addUtterances);
+</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="Estimating 2019 Revenue" href="../section2/subsection/insight_revenue.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Bay Wheels Data Analysis</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../intro.html">
+   SharpestMinds Capstone
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../section0/foreword.html">
+   Bike-Sharing in the United States
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Data Wrangling 1️⃣
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../section1/ETL.html">
+   ETL Process
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../section1/subsection/1_extract.html">
+     1. Extraction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../section1/subsection/2_transform.html">
+     2. Transformation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../section1/subsection/3_load.html">
+     3. Load
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Descriptive Data Analysis 2️⃣ 🚧
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../section2/temporal_trends.html">
+   Temporal Trends
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../section2/subsection/insight_time.html">
+     Temporal Trends
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../section2/subsection/dataViz_notebook.html">
+     Data Visualizations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../section2/spatial_trends.html">
+   Spatial Trends
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../section2/subsection/insight_location.html">
+     Trends By Locations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../section2/revenue_trends.html">
+   Revenue Trends
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../section2/subsection/insight_revenue.html">
+     Estimating 2019 Revenue
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Predictive Modelling 3️⃣ 🚧
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Machine Learning, Test 1
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/content/section3/machineLearning.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fcontent/section3/machineLearning.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/executablebooks/jupyter-book/edit/master/docs/content/section3/machineLearning.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/content/section3/machineLearning.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="machine-learning-test-1">
+<h1>Machine Learning, Test 1<a class="headerlink" href="#machine-learning-test-1" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## ML Learning</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="c1"># from wrangling4 import *</span>
+<span class="c1"># poly, lyftSF19_df, docked_df, docked_df100_intersect = lyft19Combined()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">r2_score</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;inputs/data_lyftSF2019/outputs/lyftSF19.csv&#39;</span><span class="p">,</span><span class="n">float_precision</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">3</span><span class="o">-</span><span class="mi">0498</span><span class="n">fdaa6b86</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;inputs/data_lyftSF2019/outputs/lyftSF19.csv&#39;</span><span class="p">,</span><span class="n">float_precision</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+<span class="nn">~/anaconda3/lib/python3.7/site-packages/pandas/util/_decorators.py</span> in <span class="ni">wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">309</span>                     <span class="n">stacklevel</span><span class="o">=</span><span class="n">stacklevel</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">310</span>                 <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">311</span>             <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">312</span> 
+<span class="g g-Whitespace">    </span><span class="mi">313</span>         <span class="k">return</span> <span class="n">wrapper</span>
+
+<span class="nn">~/anaconda3/lib/python3.7/site-packages/pandas/io/parsers/readers.py</span> in <span class="ni">read_csv</span><span class="nt">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, squeeze, prefix, mangle_dupe_cols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, error_bad_lines, warn_bad_lines, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">584</span>     <span class="n">kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds_defaults</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">585</span> 
+<span class="ne">--&gt; </span><span class="mi">586</span>     <span class="k">return</span> <span class="n">_read</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">587</span> 
+<span class="g g-Whitespace">    </span><span class="mi">588</span> 
+
+<span class="nn">~/anaconda3/lib/python3.7/site-packages/pandas/io/parsers/readers.py</span> in <span class="ni">_read</span><span class="nt">(filepath_or_buffer, kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">480</span> 
+<span class="g g-Whitespace">    </span><span class="mi">481</span>     <span class="c1"># Create the parser.</span>
+<span class="ne">--&gt; </span><span class="mi">482</span>     <span class="n">parser</span> <span class="o">=</span> <span class="n">TextFileReader</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">483</span> 
+<span class="g g-Whitespace">    </span><span class="mi">484</span>     <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">or</span> <span class="n">iterator</span><span class="p">:</span>
+
+<span class="nn">~/anaconda3/lib/python3.7/site-packages/pandas/io/parsers/readers.py</span> in <span class="ni">__init__</span><span class="nt">(self, f, engine, **kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">809</span>             <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">810</span> 
+<span class="ne">--&gt; </span><span class="mi">811</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_engine</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">812</span> 
+<span class="g g-Whitespace">    </span><span class="mi">813</span>     <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<span class="nn">~/anaconda3/lib/python3.7/site-packages/pandas/io/parsers/readers.py</span> in <span class="ni">_make_engine</span><span class="nt">(self, engine)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1038</span>             <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1039</span>         <span class="c1"># error: Too many arguments for &quot;ParserBase&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1040</span>         <span class="k">return</span> <span class="n">mapping</span><span class="p">[</span><span class="n">engine</span><span class="p">](</span><span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">)</span>  <span class="c1"># type: ignore[call-arg]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1041</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1042</span>     <span class="k">def</span> <span class="nf">_failover_to_python</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<span class="nn">~/anaconda3/lib/python3.7/site-packages/pandas/io/parsers/c_parser_wrapper.py</span> in <span class="ni">__init__</span><span class="nt">(self, src, **kwds)</span>
+<span class="g g-Whitespace">     </span><span class="mi">49</span> 
+<span class="g g-Whitespace">     </span><span class="mi">50</span>         <span class="c1"># open handles</span>
+<span class="ne">---&gt; </span><span class="mi">51</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_open_handles</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">52</span>         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="g g-Whitespace">     </span><span class="mi">53</span> 
+
+<span class="nn">~/anaconda3/lib/python3.7/site-packages/pandas/io/parsers/base_parser.py</span> in <span class="ni">_open_handles</span><span class="nt">(self, src, kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">227</span>             <span class="n">memory_map</span><span class="o">=</span><span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;memory_map&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">228</span>             <span class="n">storage_options</span><span class="o">=</span><span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;storage_options&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="ne">--&gt; </span><span class="mi">229</span>             <span class="n">errors</span><span class="o">=</span><span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding_errors&quot;</span><span class="p">,</span> <span class="s2">&quot;strict&quot;</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">230</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">231</span> 
+
+<span class="nn">~/anaconda3/lib/python3.7/site-packages/pandas/io/common.py</span> in <span class="ni">get_handle</span><span class="nt">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">704</span>                 <span class="n">encoding</span><span class="o">=</span><span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">705</span>                 <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">,</span>
+<span class="ne">--&gt; </span><span class="mi">706</span>                 <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">707</span>             <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">708</span>         <span class="k">else</span><span class="p">:</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;inputs/data_lyftSF2019/outputs/lyftSF19.csv&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">del</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Unnamed: 0&#39;</span><span class="p">]</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;duration_sec&#39;, &#39;start_time&#39;, &#39;end_time&#39;, &#39;start_station_id&#39;,
+       &#39;start_station_name&#39;, &#39;start_station_latitude&#39;,
+       &#39;start_station_longitude&#39;, &#39;end_station_id&#39;, &#39;end_station_name&#39;,
+       &#39;end_station_latitude&#39;, &#39;end_station_longitude&#39;, &#39;bike_id&#39;, &#39;user_type&#39;,
+       &#39;bike_share_for_all_trip&#39;, &#39;rental_access_method&#39;, &#39;start_neighborhood&#39;,
+       &#39;date_start&#39;, &#39;hour_start&#39;, &#39;date_end&#39;, &#39;hour_end&#39;, &#39;end_neighborhood&#39;,
+       &#39;start_time_day&#39;, &#39;start_time_month&#39;, &#39;start_time_hour&#39;, &#39;end_time_day&#39;,
+       &#39;end_time_month&#39;, &#39;end_time_hour&#39;, &#39;G_distance&#39;, &#39;G_time&#39;, &#39;geometry&#39;,
+       &#39;Dockless_Type&#39;, &#39;route&#39;, &#39;Quarter&#39;, &#39;ebike_trip&#39;, &#39;duration_min&#39;,
+       &#39;est_cost&#39;],
+      dtype=&#39;object&#39;)
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>duration_sec</th>
+      <th>start_time</th>
+      <th>end_time</th>
+      <th>start_station_id</th>
+      <th>start_station_name</th>
+      <th>start_station_latitude</th>
+      <th>start_station_longitude</th>
+      <th>end_station_id</th>
+      <th>end_station_name</th>
+      <th>end_station_latitude</th>
+      <th>...</th>
+      <th>end_time_hour</th>
+      <th>G_distance</th>
+      <th>G_time</th>
+      <th>geometry</th>
+      <th>Dockless_Type</th>
+      <th>route</th>
+      <th>Quarter</th>
+      <th>ebike_trip</th>
+      <th>duration_min</th>
+      <th>est_cost</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1767</td>
+      <td>2019-01-01 00:08:39</td>
+      <td>2019-01-01 00:38:06</td>
+      <td>16.0</td>
+      <td>Steuart St at Market St</td>
+      <td>37.79413</td>
+      <td>-122.39443</td>
+      <td>115.0</td>
+      <td>Jackson Playground</td>
+      <td>37.765026</td>
+      <td>...</td>
+      <td>1</td>
+      <td>5268.0</td>
+      <td>1217.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>From Steuart St at Market St to Jackson Playgr...</td>
+      <td>2019Q1</td>
+      <td>No</td>
+      <td>29</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1037</td>
+      <td>2019-01-18 08:32:34</td>
+      <td>2019-01-18 08:49:52</td>
+      <td>16.0</td>
+      <td>Steuart St at Market St</td>
+      <td>37.79413</td>
+      <td>-122.39443</td>
+      <td>115.0</td>
+      <td>Jackson Playground</td>
+      <td>37.765026</td>
+      <td>...</td>
+      <td>9</td>
+      <td>5268.0</td>
+      <td>1217.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>From Steuart St at Market St to Jackson Playgr...</td>
+      <td>2019Q1</td>
+      <td>No</td>
+      <td>17</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>860</td>
+      <td>2019-01-19 20:49:01</td>
+      <td>2019-01-19 21:03:22</td>
+      <td>16.0</td>
+      <td>Steuart St at Market St</td>
+      <td>37.79413</td>
+      <td>-122.39443</td>
+      <td>115.0</td>
+      <td>Jackson Playground</td>
+      <td>37.765026</td>
+      <td>...</td>
+      <td>21</td>
+      <td>5268.0</td>
+      <td>1217.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>From Steuart St at Market St to Jackson Playgr...</td>
+      <td>2019Q1</td>
+      <td>No</td>
+      <td>14</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1070</td>
+      <td>2019-01-22 18:28:11</td>
+      <td>2019-01-22 18:46:01</td>
+      <td>16.0</td>
+      <td>Steuart St at Market St</td>
+      <td>37.79413</td>
+      <td>-122.39443</td>
+      <td>115.0</td>
+      <td>Jackson Playground</td>
+      <td>37.765026</td>
+      <td>...</td>
+      <td>19</td>
+      <td>5268.0</td>
+      <td>1217.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>From Steuart St at Market St to Jackson Playgr...</td>
+      <td>2019Q1</td>
+      <td>No</td>
+      <td>17</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1243</td>
+      <td>2019-01-25 16:58:55</td>
+      <td>2019-01-25 17:19:39</td>
+      <td>16.0</td>
+      <td>Steuart St at Market St</td>
+      <td>37.79413</td>
+      <td>-122.39443</td>
+      <td>115.0</td>
+      <td>Jackson Playground</td>
+      <td>37.765026</td>
+      <td>...</td>
+      <td>17</td>
+      <td>5268.0</td>
+      <td>1217.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>From Steuart St at Market St to Jackson Playgr...</td>
+      <td>2019Q1</td>
+      <td>No</td>
+      <td>20</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 36 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Estimate the duration of a trip by start-location without knowing the destination</span>
+    <span class="c1">### Filter dock-to-dock</span>
+        <span class="c1">### Narrow to neighborhoods which are the busiest</span>
+            <span class="c1">### Factorize all stations within those neighborhoods</span>
+                <span class="c1">### Remove datapoints where end_destination is an outlier</span>
+
+<span class="n">df1</span> <span class="o">=</span> <span class="n">df</span>
+
+<span class="n">df1</span><span class="o">.</span><span class="n">user_type</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">df1</span><span class="o">.</span><span class="n">user_type</span> <span class="o">==</span> <span class="s1">&#39;Customer&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="c1"># Customer = 1, Subscriber = 0</span>
+<span class="n">df1</span><span class="o">.</span><span class="n">bike_share_for_all_trip</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">df1</span><span class="o">.</span><span class="n">bike_share_for_all_trip</span> <span class="o">==</span> <span class="s1">&#39;No&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="c1"># No = 1, Yes = 0</span>
+<span class="n">df1</span><span class="o">.</span><span class="n">start_time_day</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">factorize</span><span class="p">(</span><span class="n">df1</span><span class="p">[</span><span class="s1">&#39;start_time_day&#39;</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># [0, 1, 2, 3, 4, 5, 6] = [&#39;Tuesday&#39;, &#39;Friday&#39;, &#39;Saturday&#39;, &#39;Wednesday&#39;, &#39;Sunday&#39;, &#39;Monday&#39;, &#39;Thursday&#39;]</span>
+<span class="n">df1</span><span class="o">.</span><span class="n">rental_access_method</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">factorize</span><span class="p">(</span><span class="n">df1</span><span class="p">[</span><span class="s1">&#39;rental_access_method&#39;</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># [NaN, &#39;app&#39;, &#39;clipper&#39;] = [-1,0,1]</span>
+<span class="n">df1</span><span class="o">.</span><span class="n">start_time_month</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">factorize</span><span class="p">(</span><span class="n">df1</span><span class="p">[</span><span class="s1">&#39;start_time_month&#39;</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># [0,1,2,3,4,5,6,7,8,9,10,11] = [&#39;January&#39;, &#39;February&#39;, &#39;March&#39;, &#39;April&#39;, &#39;May&#39;, &#39;June&#39;, &#39;July&#39;,&#39;August&#39;, &#39;September&#39;, &#39;October&#39;, &#39;November&#39;, &#39;December&#39;]</span>
+<span class="n">df1</span><span class="o">.</span><span class="n">Dockless_Type</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">factorize</span><span class="p">(</span><span class="n">df1</span><span class="p">[</span><span class="s1">&#39;Dockless_Type&#39;</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># [&#39;N/A&#39;, &#39;Dockless_Start&#39;, &#39;Dockless_End&#39;, &#39;Dockless_to_Dockless&#39;] = [0,1,2,3]</span>
+<span class="n">df1</span><span class="o">.</span><span class="n">Quarter</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">factorize</span><span class="p">(</span><span class="n">df1</span><span class="p">[</span><span class="s1">&#39;Quarter&#39;</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># [&#39;2019Q1&#39;, &#39;2019Q2&#39;, &#39;2019Q3&#39;, &#39;2019Q4&#39;] = [0,1,2,3]</span>
+<span class="n">df1</span><span class="o">.</span><span class="n">ebike_trip</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">factorize</span><span class="p">(</span><span class="n">df1</span><span class="p">[</span><span class="s1">&#39;ebike_trip&#39;</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># [&#39;No&#39;, &#39;Yes&#39;] = [0,1]</span>
+
+<span class="n">df1</span> <span class="o">=</span> <span class="n">df1</span><span class="p">[[</span><span class="s1">&#39;start_station_latitude&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;start_station_longitude&#39;</span><span class="p">,</span> <span class="s1">&#39;user_type&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;bike_share_for_all_trip&#39;</span><span class="p">,</span> <span class="s1">&#39;rental_access_method&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;start_time_day&#39;</span><span class="p">,</span> <span class="s1">&#39;start_time_month&#39;</span><span class="p">,</span> <span class="s1">&#39;start_time_hour&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;Dockless_Type&#39;</span><span class="p">,</span> <span class="s1">&#39;Quarter&#39;</span><span class="p">,</span> <span class="s1">&#39;ebike_trip&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;est_cost&#39;</span><span class="p">,</span><span class="s1">&#39;duration_sec&#39;</span><span class="p">]]</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">df1</span><span class="p">[[</span><span class="s1">&#39;start_station_latitude&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;start_station_longitude&#39;</span><span class="p">,</span> <span class="s1">&#39;user_type&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;bike_share_for_all_trip&#39;</span><span class="p">,</span> <span class="s1">&#39;rental_access_method&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;start_time_day&#39;</span><span class="p">,</span> <span class="s1">&#39;start_time_month&#39;</span><span class="p">,</span> <span class="s1">&#39;start_time_hour&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;Dockless_Type&#39;</span><span class="p">,</span> <span class="s1">&#39;Quarter&#39;</span><span class="p">,</span> <span class="s1">&#39;ebike_trip&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;est_cost&#39;</span><span class="p">]]</span>
+
+<span class="n">y</span> <span class="o">=</span> <span class="n">df1</span><span class="p">[[</span><span class="s1">&#39;duration_sec&#39;</span><span class="p">]]</span> <span class="c1"># Predicting the duration of a trip</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Knowing the pick-up stations with xyz (mostly temporal) attributes, can you predict the route (the end station)?</span>
+    <span class="c1">### Logistic problem: where to allocate bikes when you&#39;ve an outflow of people from station A, to B.</span>
+        <span class="c1">### &quot;route modelling&quot;</span>
+            <span class="c1">### How many bikes should be available at a given station {and at a given time}?</span>
+        <span class="c1">### Encode into time intervals: morning, afternoon, evening.</span>
+            <span class="c1">### Days: encode into weekdays and weekends</span>
+            <span class="c1">### Months: encode into &quot;4 seasons&quot;</span>
+
+    <span class="c1">### Backtracking the data: extract random observations (as a validation set, 10K) in a separate DF as a validation set.</span>
+        <span class="c1">### Test the model with the validation set to create  a forecast analysis of the model.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="c1"># Split X and y into X_</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+
+<span class="n">regression_model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+<span class="n">regression_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LinearRegression(copy_X=True, fit_intercept=True, n_jobs=None, normalize=False)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">col_name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">columns</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The coefficient for </span><span class="si">{}</span><span class="s2"> is </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">col_name</span><span class="p">,</span> <span class="n">regression_model</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">idx</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The coefficient for start_station_latitude is 3383.381418181455
+The coefficient for start_station_longitude is -3310.1115559859245
+The coefficient for user_type is 1.8189894035458565e-11
+The coefficient for bike_share_for_all_trip is -1.1368683772161603e-12
+The coefficient for rental_access_method is 28.317866406167134
+The coefficient for start_time_day is 0.12892796691802139
+The coefficient for start_time_month is -16.58795541166761
+The coefficient for start_time_hour is 1.2133975876762728
+The coefficient for Dockless_Type is -12.417123996332892
+The coefficient for Quarter is 26.982222618585638
+The coefficient for ebike_trip is 113.70507695375281
+The coefficient for est_cost is 316.84739010548157
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">intercept</span> <span class="o">=</span> <span class="n">regression_model</span><span class="o">.</span><span class="n">intercept_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The intercept for our model is </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">intercept</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The intercept for our model is -532357.0351922489
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">regression_model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9137077211725886
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
+
+<span class="n">y_predict</span> <span class="o">=</span> <span class="n">regression_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="n">regression_model_mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_predict</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+
+<span class="n">regression_model_mse</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>289234.90441516484
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+
+<span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">regression_model_mse</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>537.8056381399928
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">corrMatrix</span> <span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">rc</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">:(</span><span class="mi">18</span><span class="p">,</span><span class="mi">10</span><span class="p">)})</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">corrMatrix</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/machineLearning_14_0.png" src="../../_images/machineLearning_14_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
+<span class="n">reg</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s1">&#39;y ~ X&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df1</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">reg</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="simpletable">
+<caption>OLS Regression Results</caption>
+<tr>
+  <th>Dep. Variable:</th>            <td>y</td>        <th>  R-squared:         </th>  <td>   0.914</td>  
+</tr>
+<tr>
+  <th>Model:</th>                   <td>OLS</td>       <th>  Adj. R-squared:    </th>  <td>   0.914</td>  
+</tr>
+<tr>
+  <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th>  <td>1.968e+06</td> 
+</tr>
+<tr>
+  <th>Date:</th>             <td>Sun, 25 Oct 2020</td> <th>  Prob (F-statistic):</th>   <td>  0.00</td>   
+</tr>
+<tr>
+  <th>Time:</th>                 <td>15:43:48</td>     <th>  Log-Likelihood:    </th> <td>-1.4277e+07</td>
+</tr>
+<tr>
+  <th>No. Observations:</th>      <td>1852283</td>     <th>  AIC:               </th>  <td>2.855e+07</td> 
+</tr>
+<tr>
+  <th>Df Residuals:</th>          <td>1852272</td>     <th>  BIC:               </th>  <td>2.855e+07</td> 
+</tr>
+<tr>
+  <th>Df Model:</th>              <td>    10</td>      <th>                     </th>      <td> </td>     
+</tr>
+<tr>
+  <th>Covariance Type:</th>      <td>nonrobust</td>    <th>                     </th>      <td> </td>     
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+      <td></td>         <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>Intercept</th> <td>-5.348e+05</td> <td> 3981.490</td> <td> -134.310</td> <td> 0.000</td> <td>-5.43e+05</td> <td>-5.27e+05</td>
+</tr>
+<tr>
+  <th>X[0]</th>      <td> 3410.1731</td> <td>   31.483</td> <td>  108.318</td> <td> 0.000</td> <td> 3348.467</td> <td> 3471.879</td>
+</tr>
+<tr>
+  <th>X[1]</th>      <td>-3321.4263</td> <td>   28.318</td> <td> -117.291</td> <td> 0.000</td> <td>-3376.928</td> <td>-3265.924</td>
+</tr>
+<tr>
+  <th>X[2]</th>      <td> 5.035e-07</td> <td> 3.75e-09</td> <td>  134.311</td> <td> 0.000</td> <td> 4.96e-07</td> <td> 5.11e-07</td>
+</tr>
+<tr>
+  <th>X[3]</th>      <td>-3.264e-07</td> <td> 2.43e-09</td> <td> -134.309</td> <td> 0.000</td> <td>-3.31e-07</td> <td>-3.22e-07</td>
+</tr>
+<tr>
+  <th>X[4]</th>      <td>   29.3400</td> <td>    3.703</td> <td>    7.923</td> <td> 0.000</td> <td>   22.082</td> <td>   36.598</td>
+</tr>
+<tr>
+  <th>X[5]</th>      <td>    0.2020</td> <td>    0.186</td> <td>    1.088</td> <td> 0.277</td> <td>   -0.162</td> <td>    0.566</td>
+</tr>
+<tr>
+  <th>X[6]</th>      <td>  -16.4364</td> <td>    0.481</td> <td>  -34.136</td> <td> 0.000</td> <td>  -17.380</td> <td>  -15.493</td>
+</tr>
+<tr>
+  <th>X[7]</th>      <td>    1.1555</td> <td>    0.083</td> <td>   13.916</td> <td> 0.000</td> <td>    0.993</td> <td>    1.318</td>
+</tr>
+<tr>
+  <th>X[8]</th>      <td>  -10.7175</td> <td>    2.865</td> <td>   -3.740</td> <td> 0.000</td> <td>  -16.334</td> <td>   -5.101</td>
+</tr>
+<tr>
+  <th>X[9]</th>      <td>   26.7348</td> <td>    1.457</td> <td>   18.350</td> <td> 0.000</td> <td>   23.879</td> <td>   29.590</td>
+</tr>
+<tr>
+  <th>X[10]</th>     <td>  106.9698</td> <td>    8.400</td> <td>   12.735</td> <td> 0.000</td> <td>   90.507</td> <td>  123.433</td>
+</tr>
+<tr>
+  <th>X[11]</th>     <td>  316.8148</td> <td>    0.072</td> <td> 4424.285</td> <td> 0.000</td> <td>  316.674</td> <td>  316.955</td>
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+  <th>Omnibus:</th>       <td>1323229.298</td> <th>  Durbin-Watson:     </th>   <td>   1.094</td>   
+</tr>
+<tr>
+  <th>Prob(Omnibus):</th>   <td> 0.000</td>    <th>  Jarque-Bera (JB):  </th> <td>181319642.771</td>
+</tr>
+<tr>
+  <th>Skew:</th>            <td> 2.579</td>    <th>  Prob(JB):          </th>   <td>    0.00</td>   
+</tr>
+<tr>
+  <th>Kurtosis:</th>        <td>51.195</td>    <th>  Cond. No.          </th>   <td>5.86e+19</td>   
+</tr>
+</table><br/><br/>Warnings:<br/>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.<br/>[2] The smallest eigenvalue is 8.98e-30. This might indicate that there are<br/>strong multicollinearity problems or that the design matrix is singular.</div></div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./content/section3"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="../section2/subsection/insight_revenue.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Estimating 2019 Revenue</p>
+            </div>
+        </a>
+    </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By HP-Nunes<br/>
+        
+            &copy; Copyright 2021.<br/>
+          <div class="extra_footer">
+            <script>mermaid.init();</script> <div class="container-lg mt-3"> <div class="row"> <div class="footerImages"> <a href="https://github.com/HP-Nunes" target="_blank"><img src="https://img.shields.io/badge/github%20-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white" alt="GitHub"></a> <a href="https://twitter.com/geocuriosity" target="_blank"><img src="https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white" alt="@geocuriosity"></a> <a href="https://www.linkedin.com/in/hp-nunes/" target="_blank"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"></a> <a class="reference external" href="https://jupyter.org/try" target="_blank"><img src="https://img.shields.io/badge/Made%20with-Jupyter-orange?style=for-the-badge&logo=Jupyter" alt="Made withJupyter"></a> </div> <div class="container-lg mt-3"> <a href="mailto:contact@hpnunes.com"><img src="https://img.shields.io/badge/Contact%20me-contact%40hpnunes.com-9cf" alt="contact@hpnunes.com"></a> <a href="https://hpnunes.com/" target="_blank"><img src="https://img.shields.io/badge/My%20website-https%3A%2F%2Fhpnunes.com%2F-blue" alt="https://hpnunes.com/"></a> <a href="https://github.com/HP-Nunes/HP-Nunes.github.io" target="_blank"><img src="https://img.shields.io/github/last-commit/HP-Nunes/HP-Nunes.github.io" alt="update to project's repo"></a> </div> <div class="row_footer my-3"> © 2021 </div>
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

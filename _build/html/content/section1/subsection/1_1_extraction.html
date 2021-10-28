@@ -1,0 +1,586 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1. Extraction &#8212; Bay Wheels Data Analysis</title>
+    
+  <link href="../../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script kind="utterances">
+
+    var commentsRunWhenDOMLoaded = cb => {
+    if (document.readyState != 'loading') {
+        cb()
+    } else if (document.addEventListener) {
+        document.addEventListener('DOMContentLoaded', cb)
+    } else {
+        document.attachEvent('onreadystatechange', function() {
+        if (document.readyState == 'complete') cb()
+        })
+    }
+}
+
+var addUtterances = () => {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "https://utteranc.es/client.js";
+    script.async = "async";
+
+    script.setAttribute("repo", "github-org/github-repo");
+    script.setAttribute("issue-term", "pathname");
+    script.setAttribute("theme", "github-light");
+    script.setAttribute("label", "💬 comment");
+    script.setAttribute("crossorigin", "anonymous");
+
+    sections = document.querySelectorAll("div.section");
+    if (sections !== null) {
+        section = sections[sections.length-1];
+        section.appendChild(script);
+    }
+}
+commentsRunWhenDOMLoaded(addUtterances);
+</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Temporal Trends" href="../../section2/temporal_trends.html" />
+    <link rel="prev" title="ETL Process" href="../wrangling.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Bay Wheels Data Analysis</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../intro.html">
+   SharpestMinds Capstone
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../section0/foreword.html">
+   Bike-Sharing in the United States
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Data Wrangling 1️⃣
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../wrangling.html">
+   ETL Process
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     <strong>
+      1. Extraction
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Descriptive Data Analysis 2️⃣
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../section2/temporal_trends.html">
+   Temporal Trends
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../section2/subsection/insight_time.html">
+     Temporal Trends
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../section2/subsection/dataViz_notebook.html">
+     Data Visualizations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../section2/spatial_trends.html">
+   Spatial Trends
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../section2/subsection/insight_location.html">
+     Trends By Locations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../section2/revenue_trends.html">
+   Revenue Trends
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../section2/subsection/insight_revenue.html">
+     Estimating 2019 Revenue
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Predictive Modelling 3️⃣
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../section3/machineLearning.html">
+   Machine Learning, Test 1
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../../_sources/content/section1/subsection/1_1_extraction.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fcontent/section1/subsection/1_1_extraction.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/executablebooks/jupyter-book/edit/master/docs/content/section1/subsection/1_1_extraction.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/content/section1/subsection/1_1_extraction.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#boilerplate-code">
+   Boilerplate Code
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#get-the-data">
+   Get the Data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#step-1-combine-the-raw-data-split-by-months-into-a-single-csv-for-each-given-year">
+     Step 1: Combine the raw data, split by months, into a single csv for each given year.
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       2019
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+       <em>
+        2020
+       </em>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id3">
+       <em>
+        2021
+       </em>
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="extraction">
+<h1><strong>1. Extraction</strong><a class="headerlink" href="#extraction" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="boilerplate-code">
+<h2>Boilerplate Code<a class="headerlink" href="#boilerplate-code" title="Permalink to this headline">¶</a></h2>
+<div class="cell tag_hide-input tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install -r assets/requirements.txt
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">ERROR: Could not open requirements file: [Errno 2] No such file or directory: &#39;assets/requirements.txt&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="get-the-data">
+<h2>Get the Data<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
+<p>We are pulling Bay Wheels raw dataset from the <a class="reference external" href="https://www.lyft.com/bikes/bay-wheels/system-data">Lyft’s System Data</a> page (under <a class="reference external" href="https://s3.amazonaws.com/baywheels-data/index.html">Download Bay Wheels trip history data</a>). The data is contained within zipped csv files for each month of a given year; therefore, I clicked and downloaded all the files within my date range of interest: ie, January 2019 - August 2021.</p>
+<p>I unzipped the files and saved each csv into a folder corresponding to the year the data was created (thus, I had three folders for 2019, 2020, and 2021).</p>
+<hr class="docutils" />
+<p>Improvements:</p>
+<ul class="simple">
+<li><p>Write a batch script to pull the csv files directly from Lyft’s website;</p></li>
+<li><p>Issues: Lyft does not provide an API to call upon their historical dataset. Furthermore, due to the rebranding of Bay Wheels from Ford Go Bike in mid-2019, which is reflected in the filepath convention to the files, that added a layer of difficulty to work around with. Finally, the zip files contain a folder dedicated to csv files formatted towards MacOS requirements, which I did not need to extract.</p></li>
+</ul>
+<div class="section" id="step-1-combine-the-raw-data-split-by-months-into-a-single-csv-for-each-given-year">
+<h3>Step 1: Combine the raw data, split by months, into a single csv for each given year.<a class="headerlink" href="#step-1-combine-the-raw-data-split-by-months-into-a-single-csv-for-each-given-year" title="Permalink to this headline">¶</a></h3>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#@title</span>
+<span class="k">def</span> <span class="nf">combineRawData</span><span class="p">(</span><span class="n">year</span><span class="p">):</span>
+  <span class="c1"># filepath2csv must be a string, and link to all csv files</span>
+  <span class="c1"># needs to end like this: &#39;/*.csv&#39;</span>
+    <span class="n">filepath2csv</span> <span class="o">=</span> <span class="s1">&#39;./rawdata/systemdatalyft/&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;lyftraw/*.csv&#39;</span>
+  <span class="c1"># filepath is like filepath2csv but without &#39;/*.csv&#39;</span>
+    <span class="n">filepath</span> <span class="o">=</span> <span class="s1">&#39;./rawdata/systemdatalyft/&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;lyftraw/&#39;</span>
+  <span class="c1"># name_csv is the combined dataframe saved into a single csv within the designated filepath</span>
+    <span class="n">name_csv</span> <span class="o">=</span> <span class="s1">&#39;lyft&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;_raw.csv&#39;</span>
+
+    <span class="n">files</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">filepath2csv</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">f</span> <span class="ow">in</span> <span class="nb">enumerate</span> <span class="p">(</span><span class="n">files</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+            <span class="n">df</span><span class="p">[</span><span class="s1">&#39;fname&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">tmp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+            <span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;fname&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
+            
+    <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">filepath</span><span class="o">+</span><span class="n">name_csv</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h4>2019<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#@title</span>
+<span class="n">combineRawData</span><span class="p">(</span><span class="s1">&#39;2019&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">3</span><span class="o">-</span><span class="mf">5e3</span><span class="n">ea0600579</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1">#@title</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">combineRawData</span><span class="p">(</span><span class="s1">&#39;2019&#39;</span><span class="p">)</span>
+
+<span class="nn">&lt;ipython-input-2-33285b1ec758&gt;</span> in <span class="ni">combineRawData</span><span class="nt">(year)</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span>     <span class="n">name_csv</span> <span class="o">=</span> <span class="s1">&#39;lyft&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;_raw.csv&#39;</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span> 
+<span class="ne">---&gt; </span><span class="mi">11</span>     <span class="n">files</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">filepath2csv</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span> 
+<span class="g g-Whitespace">     </span><span class="mi">13</span>     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">f</span> <span class="ow">in</span> <span class="nb">enumerate</span> <span class="p">(</span><span class="n">files</span><span class="p">):</span>
+
+<span class="ne">NameError</span>: name &#39;glob&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<p>The output file will be in the folder with all the input files; you can then just remove the latter.</p>
+<!-- ![img](1extract_img.png)
+ -->
+<img align="left" width="60%" height="30%" style="margin-right:25px" src="1extract_img.png"><p>Repeat for the 2020 and 2021 datasets:</p>
+</div>
+<div class="section" id="id2">
+<h4><em>2020</em><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#@title</span>
+<span class="n">combineRawData</span><span class="p">(</span><span class="s1">&#39;2020&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id3">
+<h4><em>2021</em><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#@title</span>
+<span class="n">combineRawData</span><span class="p">(</span><span class="s1">&#39;2021&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You might think <em>why not just combine all of the yearly dataset into one csv file?</em> which is not an unreasonable thought. Wrangling data, in my experience, is an iterative process where incongruity in the raw dataset is uncovered through trials and errors. With these particular sets of data, I observed that their schema was not consistent in-between years (2019 was further complicated due to rebranding, so some of the data inputs changed in the meantime).</p>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./content/section1/subsection"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="../wrangling.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">ETL Process</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="../../section2/temporal_trends.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Temporal Trends</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By HP-Nunes<br/>
+        
+            &copy; Copyright 2021.<br/>
+          <div class="extra_footer">
+            <script>mermaid.init();</script> <div class="container-lg mt-3"> <div class="row"> <div class="footerImages"> <a href="https://github.com/HP-Nunes" target="_blank"><img src="https://img.shields.io/badge/github%20-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white" alt="GitHub"></a> <a href="https://twitter.com/geocuriosity" target="_blank"><img src="https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white" alt="@geocuriosity"></a> <a href="https://www.linkedin.com/in/hp-nunes/" target="_blank"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"></a> <a class="reference external" href="https://jupyter.org/try" target="_blank"><img src="https://img.shields.io/badge/Made%20with-Jupyter-orange?style=for-the-badge&logo=Jupyter" alt="Made withJupyter"></a> </div> <div class="container-lg mt-3"> <a href="mailto:contact@hpnunes.com"><img src="https://img.shields.io/badge/Contact%20me-contact%40hpnunes.com-9cf" alt="contact@hpnunes.com"></a> <a href="https://hpnunes.com/" target="_blank"><img src="https://img.shields.io/badge/My%20website-https%3A%2F%2Fhpnunes.com%2F-blue" alt="https://hpnunes.com/"></a> <a href="https://github.com/HP-Nunes/HP-Nunes.github.io" target="_blank"><img src="https://img.shields.io/github/last-commit/HP-Nunes/HP-Nunes.github.io" alt="update to project's repo"></a> </div> <div class="row_footer my-3"> © 2021 </div>
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

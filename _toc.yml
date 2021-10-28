@@ -1,0 +1,31 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+parts:
+- caption: 
+  chapters:
+  - file: content/section0/foreword
+- caption: Data Wrangling 1️⃣
+  chapters:
+    - file: content/section1/ETL
+      sections:
+          - file: content/section1/subsection/1_extract
+          - file: content/section1/subsection/2_transform
+          - file: content/section1/subsection/3_load 
+- caption: Descriptive Data Analysis 2️⃣ 🚧
+  chapters:
+    - file: content/section2/temporal_trends 
+      sections:
+      - file: content/section2/subsection/insight_time
+      - file: content/section2/subsection/dataViz_notebook
+    - file: content/section2/spatial_trends 
+      sections:
+      - file: content/section2/subsection/insight_location
+    - file: content/section2/revenue_trends 
+      sections:
+      - file: content/section2/subsection/insight_revenue
+- caption: Predictive Modelling 3️⃣ 🚧
+  chapters:
+  - file: content/section3/machineLearning 

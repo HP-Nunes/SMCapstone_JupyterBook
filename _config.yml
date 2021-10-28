@@ -1,0 +1,68 @@
+# Book settings
+# Learn more at https://jupyterbook.org/customize/config.html
+
+title: Bay Wheels Data Analysis
+author: HP-Nunes
+logo: assets/logo.png
+exclude_patterns: [.github/*, README.md, venv/*]  # Patterns to skip when building the book. Can be glob-style (e.g. "*skip.ipynb")
+
+
+# Force re-execution of notebooks on each build.
+# See https://jupyterbook.org/content/execute.html
+execute:
+  execute_notebooks: force
+
+# Define the name of the latex output file for PDF builds
+latex:
+  latex_documents:
+    targetname: book.tex
+
+# Add a bibtex file so that we can create citations
+bibtex_bibfiles:
+  - references.bib
+
+# Information about where the book exists on the web
+repository:
+  url: https://github.com/executablebooks/jupyter-book  # Online location of your book
+  path_to_book: docs  # Optional path to your book, relative to the repository root
+  branch: master  # Which branch of the repository should be used when creating links (optional)
+
+# Add GitHub buttons to your book
+# See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
+html:
+  comments:
+    utterances:
+      repo: "github-org/github-repo"
+      issue-term: "pathname"
+      theme: "github-light"
+      # https://jupyterbook.org/interactive/comments/utterances.html 
+  use_issues_button: true
+  use_repository_button: true
+  favicon: _static/logo/favicon.ico  # A path to a favicon image
+  # google_analytics_id: ""  # A GA id that can be used to track book views.
+  navbar_number_sections    : True  # Add a number to each section in your left navbar
+  use_edit_page_button      : True  # Whether to add an "edit this page" button to pages. If `true`, repository information in repository: must be filled in
+  use_repository_button     : True  # Whether to add a link to your repository button
+  use_issues_button         : True  # Whether to add an "open an issue" button
+  home_page_in_navbar       : true  # Whether to include your home page in the left Navigation Bar
+  # baseurl                   : "https://fairplus.github.io/the-fair-cookbook"  # The base URL where your book will be hosted. Used for creating image previews and social links. e.g.: https://mypage.com/mybook/
+  extra_navbar              : Powered by <a href="https://jupyterbook.org">Jupyter Book</a>  # Will be displayed underneath the left navbar.
+  extra_footer              :   # Will be displayed underneath the footer.
+    <script>mermaid.init();</script>
+    <div class="container-lg mt-3">
+      <div class="row">
+            <div class="footerImages">
+              <a href="https://github.com/HP-Nunes" target="_blank"><img src="https://img.shields.io/badge/github%20-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white" alt="GitHub"></a>
+              <a href="https://twitter.com/geocuriosity" target="_blank"><img src="https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white" alt="@geocuriosity"></a>
+              <a href="https://www.linkedin.com/in/hp-nunes/" target="_blank"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"></a>
+              <a class="reference external" href="https://jupyter.org/try" target="_blank"><img src="https://img.shields.io/badge/Made%20with-Jupyter-orange?style=for-the-badge&logo=Jupyter" alt="Made withJupyter"></a>
+        </div>
+    <div class="container-lg mt-3">
+        <a href="mailto:contact@hpnunes.com"><img src="https://img.shields.io/badge/Contact%20me-contact%40hpnunes.com-9cf" alt="contact@hpnunes.com"></a>
+        <a href="https://hpnunes.com/" target="_blank"><img src="https://img.shields.io/badge/My%20website-https%3A%2F%2Fhpnunes.com%2F-blue" alt="https://hpnunes.com/"></a>
+        <a href="https://github.com/HP-Nunes/HP-Nunes.github.io" target="_blank"><img src="https://img.shields.io/github/last-commit/HP-Nunes/HP-Nunes.github.io" alt="update to project's repo"></a>
+    </div>
+    <div class="row_footer my-3">
+    © 2021
+    </div>
+

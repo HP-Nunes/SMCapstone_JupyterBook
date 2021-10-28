@@ -1,0 +1,15 @@
+pandas
+numpy
+seaborn
+matplotlib
+glob2
+chart_studio
+plotly==5.3.1 
+
+## Geopandas/Pythonic GIS
+geopandas
+contextily
+pygeos
+shapely
+pyproj
+fiona
