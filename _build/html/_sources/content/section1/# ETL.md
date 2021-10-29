@@ -1,3 +1,0 @@
-# ETL Process
-<br>
-<br>
