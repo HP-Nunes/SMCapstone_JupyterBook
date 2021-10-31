@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SharpestMinds Capstone &#8212; Bay Wheels Data Analysis</title>
+    <title>SharpestMinds Capstone Project &#8212; Bay Wheels Data Analysis</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
   <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -87,7 +87,7 @@ commentsRunWhenDOMLoaded(addUtterances);
     <link rel="shortcut icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Bike-Sharing in the United States" href="content/section0/foreword.html" />
+    <link rel="next" title="Foreword" href="content/section0/foreword.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -124,14 +124,14 @@ commentsRunWhenDOMLoaded(addUtterances);
         <ul class="nav bd-sidenav">
  <li class="toctree-l1 current">
   <a class="reference internal" href="#">
-   SharpestMinds Capstone
+   SharpestMinds Capstone Project
   </a>
  </li>
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="content/section0/foreword.html">
-   Bike-Sharing in the United States
+   Foreword
   </a>
  </li>
 </ul>
@@ -333,24 +333,31 @@ commentsRunWhenDOMLoaded(addUtterances);
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#overview">
-   Overview
+  <a class="reference internal nav-link" href="#data-analysis-of-lyft-s-bay-wheels-in-san-francisco">
+   Data Analysis of Lyft’s Bay Wheels in San Francisco
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#learning-objectives">
-   Learning objectives
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#find-the-project-on-github">
-   Find the project on GitHub
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#about-me">
-   About me
-  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#overview">
+     Overview
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#learning-objectives">
+     Learning objectives
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#find-the-project-on-github">
+     Find the project on GitHub
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hi-i-m-hadrien-picq">
+     Hi, I’m Hadrien Picq
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -363,18 +370,23 @@ commentsRunWhenDOMLoaded(addUtterances);
         
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="sharpestminds-capstone">
-<h1>SharpestMinds Capstone<a class="headerlink" href="#sharpestminds-capstone" title="Permalink to this headline">¶</a></h1>
-<p>Data Analysis of Lyft’s Bay Wheels in San Francisco</p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="sharpestminds-capstone-project">
+<h1>SharpestMinds Capstone Project<a class="headerlink" href="#sharpestminds-capstone-project" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="data-analysis-of-lyft-s-bay-wheels-in-san-francisco">
+<h2>Data Analysis of Lyft’s Bay Wheels in San Francisco<a class="headerlink" href="#data-analysis-of-lyft-s-bay-wheels-in-san-francisco" title="Permalink to this headline">¶</a></h2>
 <hr class="docutils" />
-<p><strong>This is my capstone deliverable for my SharpestMinds data fellowship, which consists of multi-faceted, in-depth analysis of Lyft’s bikesharing dataset from 2019 to 2021, in addition to predictive modelling.</strong></p>
+<p><strong>This is my capstone deliverable for my SharpestMinds data fellowship, which consists of a multi-faceted and in-depth data analysis of Lyft’s Bay Wheels bikesharing dataset from 2019 to 2021 in the city of San Francisco.</strong></p>
 <hr class="docutils" />
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This project is currently in production. Much of the data wrangling and analytical work was completed over the course of 2020, and paused for most of 2021 as I was finishing my Master’s thesis. I will be migrating what I have already created, and updating new content, progressively.</p>
+</div>
 <div class="section" id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
-<p>Bay Wheels, Lyft’s bikesharing service for the San Francisco Bay Area, has gone through several upheaval in the city of San Francisco over the past few years, some of which include: rebranding, the failed launch of its e-bike fleet in 2019, the effect of the 2020 COVID-19 pandemic, and public discontent caused by changes in its pricing scheme. Yet Bay Wheels continues to expand its coverage throughout San Francisco’s hilly landscape, unhindered by the city’s pleasant Mediterranean climate.</p>
+<h3>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h3>
+<p>Bay Wheels, Lyft’s bikesharing service for the San Francisco Bay Area, has gone through several upheavals over the last few years, including rebranding from Ford Go-Bikes and the botched launch of its e-bike fleet in 2019, the effect of the 2020 COVID-19 pandemic on typical commuter ridership trends, and public discontent due to changes in its pricing plans. Yet Bay Wheels continues to expand its coverage throughout San Francisco’s hilly landscape, unhindered by the city’s pleasant Mediterranean climate. In this project, I am analyzing temporal, spatial, customer (ridership), and revenue trends; by comprehensively observing the dataset, I aim to develop a business case to improve Lyft’s day-to-day operations.</p>
 </div>
 <div class="section" id="learning-objectives">
-<h2>Learning objectives<a class="headerlink" href="#learning-objectives" title="Permalink to this headline">¶</a></h2>
+<h3>Learning objectives<a class="headerlink" href="#learning-objectives" title="Permalink to this headline">¶</a></h3>
 <p>My personal learning objectives for this project are:</p>
 <ul class="simple">
 <li><p>To refine and iterate upon my ETL process for big data;</p></li>
@@ -384,17 +396,14 @@ commentsRunWhenDOMLoaded(addUtterances);
 </ul>
 </div>
 <div class="section" id="find-the-project-on-github">
-<h2>Find the project on GitHub<a class="headerlink" href="#find-the-project-on-github" title="Permalink to this headline">¶</a></h2>
-<p><a href="https://github.com/HP-Nunes/HP-Nunes.github.io" target="_blank"><img src="https://gh-card.dev/repos/wyattowalsh/data-science-notes.svg"></a></p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Project is currently in progress.</p>
+<h3>Find the project on GitHub<a class="headerlink" href="#find-the-project-on-github" title="Permalink to this headline">¶</a></h3>
+<p><a href="https://github.com/HP-Nunes/SMCapstone_GColab/tree/main" target="_blank"><img src="https://raw.githubusercontent.com/HP-Nunes/SMCapstone_GColab/master/assets/img/gh-card.png"></a></p>
 </div>
+<div class="section" id="hi-i-m-hadrien-picq">
+<h3>Hi, I’m Hadrien Picq<a class="headerlink" href="#hi-i-m-hadrien-picq" title="Permalink to this headline">¶</a></h3>
+<p><img align="left" width="200" height="183" style="margin-right:25px" src="https://avatars3.githubusercontent.com/u/32919932"> I hold a BA in Geography with a minor in Geospatial Information &amp; Technology from UC Berkeley, and a Master of Environment in Environmental Assessment from Concordia University. I began my reconversion towards data science in 2018, motivated by the imperative to enhance my GIS skillset using programmatic methods for data analytical processes. I joined <a href="https://www.sharpestminds.com/" target="_blank">SharpestMinds</a> in 2020 under the mentorship of <a href="https://www.linkedin.com/in/mikhail-sidyakov/" target="_blank">Mikhail Sidyakov</a> to further expand my base knowledge of data science, and to be prepared for the competitive STEM job market.</p>
+<p>Interests of mine include the environmental impact of air pollution (my Master’s revolved around community-participation in monitoring fine particle pollution, and how that affects regulatory planning and policy), and geospatial representations of data. I also want to get into Raspberry-Pi’s and computer hardware (especially for environmental monitoring!).</p>
 </div>
-<div class="section" id="about-me">
-<h2>About me<a class="headerlink" href="#about-me" title="Permalink to this headline">¶</a></h2>
-<!-- ![](./assets/img/profilepic.jpg) -->
-<p><img align="left" width="200" height="183" style="margin-right:25px" src="https://avatars3.githubusercontent.com/u/32919932"> I hold a BA in Geography with a minor in Geospatial Information &amp; Technology from UC Berkeley, and a Master of Environment in Environmental Assessment from Concordia University. I began my reconversion towards data science in 2018, motivated by the imperative to enhance my GIS skillset using programmatic methods for data analytical processes. I joined SharpestMinds in 2020 under the mentorship of <a href="https://www.linkedin.com/in/mikhail-sidyakov/" target="_blank">Mikhail Sidyakov</a> to further expand my base knowledge of data science, and to be prepared navigating the competitive STEM job market.</p>
 </div>
 <div class="toctree-wrapper compound">
 </div>
@@ -439,7 +448,7 @@ commentsRunWhenDOMLoaded(addUtterances);
         <a class="right-next" href="content/section0/foreword.html" title="next page">
             <div class="prevnext-info">
                 <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Bike-Sharing in the United States</p>
+                <p class="prevnext-title">Foreword</p>
             </div>
             <i class="prevnext-label fas fa-angle-right"></i>
         </a>
