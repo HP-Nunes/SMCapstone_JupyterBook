@@ -129,8 +129,15 @@ commentsRunWhenDOMLoaded(addUtterances);
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../section0/foreword.html">
+  <a class="reference internal" href="../section0/subfolder2/foreword.html">
    Foreword
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../section0/subfolder/timeline.html">
+   Key Events Timeline
   </a>
  </li>
 </ul>
@@ -140,32 +147,10 @@ commentsRunWhenDOMLoaded(addUtterances);
  </span>
 </p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
+ <li class="toctree-l1">
   <a class="reference internal" href="ETL.html">
    ETL Process
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="subsection/1_extract.html">
-     1. Extraction
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="subsection/2_transform.html">
-     2. Transformation
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="subsection/3_load.html">
-     3. Load
-    </a>
-   </li>
-  </ul>
  </li>
 </ul>
 <p class="caption">
@@ -174,34 +159,17 @@ commentsRunWhenDOMLoaded(addUtterances);
  </span>
 </p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
+ <li class="toctree-l1">
   <a class="reference internal" href="../section2/temporal_trends.html">
-   Temporal Trends
+   Temporal Analysis
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../section2/subsection/insight_time.html">
-     Temporal Trends
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../section2/subsection/dataViz_notebook.html">
-     Data Visualizations
-    </a>
-   </li>
-  </ul>
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../section2/spatial_trends.html">
    Spatial Trends
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -217,8 +185,8 @@ commentsRunWhenDOMLoaded(addUtterances);
   <a class="reference internal" href="../section2/revenue_trends.html">
    Revenue Trends
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -596,13 +564,13 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 3 µs, sys: 1e+03 ns, total: 4 µs
-Wall time: 6.2 µs
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 2 µs, sys: 0 ns, total: 2 µs
+Wall time: 5.01 µs
 </pre></div>
 </div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="mi">7</span><span class="n">fc376757bb5</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_143157</span><span class="o">/</span><span class="mf">3652467799.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="n">count_drop_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
 <span class="g g-Whitespace">     </span><span class="mi">17</span> 
 <span class="ne">---&gt; </span><span class="mi">18</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;inputs/data_lyftSF2019/outputs/2019lyftSF_dataset.csv&#39;</span><span class="p">,</span><span class="n">float_precision</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
