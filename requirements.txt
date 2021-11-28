@@ -1,5 +1,4 @@
 jupyter-book
-blurb python-docs-theme
 matplotlib
 numpy
 markdown
