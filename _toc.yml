@@ -6,10 +6,10 @@ root: intro
 parts:
 - caption: 
   chapters:
-  - file: content/section0/foreword
+  - file: content/section0/subfolder2/foreword
 - caption: 
   chapters:
-  - file: content/section0/timeline
+  - file: content/section0/subfolder/timeline
 - caption: Data Wrangling 1️⃣
   chapters:
     - file: content/section1/ETL

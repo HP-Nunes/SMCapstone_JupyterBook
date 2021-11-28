@@ -107,7 +107,7 @@ function imageZoom(imgID, resultID) {
 <div class="img-zoom-container">
     <div class='parent'>
         <div class='child inline-block-child'>
-  <img id="myimage" src="https://github.com/HP-Nunes/SMCapstone_JupyterBook/blob/master/assets/img/content/Micromobility_Landscape.png?raw=true" width="800" height="600" alt="Micromobility Landscape: https://micromobility.io/landscape">
+  <img id="myimage" src="https://github.com/HP-Nunes/SMCapstone_JupyterBook/blob/master/assets/img/content/micromobility_landscape.jpeg?raw=true" width="800" height="600" alt="Micromobility Landscape: https://micromobility.io/landscape">
         </div>
         <div class='child inline-block-child'>
   <div id="myresult" class="img-zoom-result"></div>
