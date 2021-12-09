@@ -1,0 +1,2237 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ETL Process &#8212; Bay Wheels Data Analysis</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script kind="utterances">
+
+    var commentsRunWhenDOMLoaded = cb => {
+    if (document.readyState != 'loading') {
+        cb()
+    } else if (document.addEventListener) {
+        document.addEventListener('DOMContentLoaded', cb)
+    } else {
+        document.attachEvent('onreadystatechange', function() {
+        if (document.readyState == 'complete') cb()
+        })
+    }
+}
+
+var addUtterances = () => {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "https://utteranc.es/client.js";
+    script.async = "async";
+
+    script.setAttribute("repo", "github-org/github-repo");
+    script.setAttribute("issue-term", "pathname");
+    script.setAttribute("theme", "github-light");
+    script.setAttribute("label", "💬 comment");
+    script.setAttribute("crossorigin", "anonymous");
+
+    sections = document.querySelectorAll("div.section");
+    if (sections !== null) {
+        section = sections[sections.length-1];
+        section.appendChild(script);
+    }
+}
+commentsRunWhenDOMLoaded(addUtterances);
+</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Bay Wheels Data Analysis</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../intro.html">
+   SharpestMinds Capstone Project
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../section0/foreword.html">
+   Foreword
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../section0/timeline.html">
+   Key Events Timeline
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Data Wrangling 1️⃣
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="ETL.html">
+   ETL Process
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Descriptive Data Analysis 2️⃣ 🚧
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../section2/temporal_trends.html">
+   Temporal Analysis
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../section2/spatial_trends.html">
+   Spatial Trends
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../section2/subsection/insight_location.html">
+     Trends By Locations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../section2/revenue_trends.html">
+   Revenue Trends
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../section2/subsection/insight_revenue.html">
+     Estimating 2019 Revenue
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Predictive Modelling 3️⃣ 🚧
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../section3/machineLearning.html">
+   Machine Learning, Test 1
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/content/section1/wrangling.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fcontent/section1/wrangling.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/executablebooks/jupyter-book/edit/master/docs/content/section1/wrangling.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/content/section1/wrangling.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#wrangling">
+   Wrangling
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#get-the-coordinate-for-all-unique-stations">
+     Get the coordinate for all unique stations
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#error-identified">
+       Error Identified!
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#group-rides-by-drop-off-stations">
+     Group Rides by Drop-off Stations
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#error-rectified">
+       Error Rectified
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#group-rides-by-pick-up-stations">
+     Group Rides by Pick-Up Stations
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#concat-both-df">
+     Concat both DF
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       Error Rectified
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#further-cleaning">
+     Further cleaning:
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#identify-pick-up-stations-with-duplicates">
+       Identify pick-up stations with duplicates
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#identify-drop-off-stations-with-duplicates">
+       Identify drop-off stations with duplicates
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#merge-rows-with-matching-coordinates">
+       Merge rows with matching coordinates
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#drop-null-locations">
+       Drop ‘Null’ locations
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#identify-stations-with-drop-off-and-pick-up-coordinates-that-do-not-match">
+       Identify stations with drop-off and pick-up coordinates that do not match
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#save-to-csv-and-export-to-qgis-to-intersect-the-station-datapoints-w-city-neighorhood-boundaries">
+     4. Save to csv and export to QGIS to intersect the station datapoints w/city/neighorhood boundaries
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-processing-in-qgis">
+   Data Processing in QGIS
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#import-csvs-which-have-been-intersected-with-the-boundaries-of-cities-and-sf-neighborhoods-in-qgis">
+     Import CSVs which have been intersected with the boundaries of cities and SF neighborhoods in QGIS
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#re-importing-the-intersected-dataset">
+   Re-importing the intersected dataset
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#insights">
+   Insights
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#distribution-of-stations-per-city-bay-wheels-dataset">
+     Distribution of stations per city (Bay Wheels dataset)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#using-helper-functions-to-speed-up-the-process">
+       Using Helper Functions to speed-up the process!
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#busiest-10-pick-up-station">
+   Busiest 10 Pick-Up Station
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#busiest-neighborhoods-by-pick-ups">
+   10 Busiest Neighborhoods by Pick-Ups
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#busiest-10-drop-off-station">
+   Busiest 10 Drop-Off Station
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#busiest-neighborhoods-by-drop-offs">
+   10 Busiest Neighborhoods by Drop-offs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#busiest-routes">
+   Busiest Routes
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#total-number-of-routes-by-neighborhoods">
+   Total number of routes by Neighborhoods
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="etl-process">
+<h1>ETL Process<a class="headerlink" href="#etl-process" title="Permalink to this headline">¶</a></h1>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">time</span>
+
+<span class="c1">### LOAD PACKAGES ####</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">glob</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;display.precision&quot;</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+
+
+<span class="c1">### LOAD DATA ###</span>
+
+<span class="n">count_trips_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="n">count_pickup_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="n">count_drop_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;inputs/data_lyftSF2019/outputs/2019lyftSF_dataset.csv&#39;</span><span class="p">,</span><span class="n">float_precision</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="c1"># df = pd.read_csv(r&#39;data_lyftSF2019/outputs/2019lyftSF_intersected.csv&#39;,float_precision=None)</span>
+
+
+<span class="c1">### PREPROCESS ###</span>
+
+<span class="n">main_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
+<span class="c1"># Parse the timestamp field</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;date_start&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">start_time</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;hour_start&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">start_time</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;date_end&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">end_time</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;hour_end&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">end_time</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">9</span><span class="p">):</span>
+
+    <span class="c1"># Count most popular trips</span>
+
+    <span class="n">count_series</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;start_station_name&#39;</span><span class="p">,</span> <span class="s1">&#39;end_station_name&#39;</span><span class="p">,</span><span class="s1">&#39;start_station_latitude&#39;</span><span class="p">,</span><span class="s1">&#39;start_station_longitude&#39;</span><span class="p">,</span><span class="s1">&#39;end_station_latitude&#39;</span><span class="p">,</span><span class="s1">&#39;end_station_longitude&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+    <span class="n">count_trips_df_l</span> <span class="o">=</span> <span class="n">count_series</span><span class="o">.</span><span class="n">to_frame</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;count&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+    <span class="n">count_trips_df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">count_trips_df</span><span class="p">,</span> <span class="n">count_trips_df_l</span><span class="p">])</span>
+
+    
+    <span class="c1"># Count most popular pickup spots</span>
+
+    <span class="n">count_series</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;start_station_name&#39;</span><span class="p">,</span> <span class="s1">&#39;start_station_latitude&#39;</span><span class="p">,</span> <span class="s1">&#39;start_station_longitude&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+    <span class="n">count_pickup_df_l</span> <span class="o">=</span> <span class="n">count_series</span><span class="o">.</span><span class="n">to_frame</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;count&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+    <span class="n">count_pickup_df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">count_pickup_df</span><span class="p">,</span> <span class="n">count_pickup_df_l</span><span class="p">])</span>
+
+
+    <span class="c1"># Count most popular dropoff spots</span>
+
+    <span class="n">count_series</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;end_station_name&#39;</span><span class="p">,</span> <span class="s1">&#39;end_station_latitude&#39;</span><span class="p">,</span> <span class="s1">&#39;end_station_longitude&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+    <span class="n">count_drop_df_l</span> <span class="o">=</span> <span class="n">count_series</span><span class="o">.</span><span class="n">to_frame</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;count&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+    <span class="n">count_drop_df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">count_drop_df</span><span class="p">,</span> <span class="n">count_drop_df_l</span><span class="p">])</span>
+
+    <span class="c1">#drop original df</span>
+<span class="c1">#     del df</span>
+
+
+<span class="c1">### Observe the Dataframe&#39;s properties ###</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;*****Master DF*****&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">main_df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;---------------------------------------------&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">main_df</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span>    
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span> 
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;*****Grouped by Trips*****&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">count_trips_df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;---------------------------------------------&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">count_trips_df</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span>    
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;*****Grouped by Pick-up Locations*****&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">count_pickup_df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;---------------------------------------------&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">count_pickup_df</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>    
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;*****Grouped by Drop-off Locations*****&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">count_drop_df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;---------------------------------------------&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">count_drop_df</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 2 µs, sys: 0 ns, total: 2 µs
+Wall time: 6.44 µs
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_31521</span><span class="o">/</span><span class="mf">3652467799.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="n">count_drop_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">17</span> 
+<span class="ne">---&gt; </span><span class="mi">18</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;inputs/data_lyftSF2019/outputs/2019lyftSF_dataset.csv&#39;</span><span class="p">,</span><span class="n">float_precision</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">19</span> <span class="c1"># df = pd.read_csv(r&#39;data_lyftSF2019/outputs/2019lyftSF_intersected.csv&#39;,float_precision=None)</span>
+<span class="g g-Whitespace">     </span><span class="mi">20</span> 
+
+<span class="nn">~/anaconda3/lib/python3.7/site-packages/pandas/util/_decorators.py</span> in <span class="ni">wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">309</span>                     <span class="n">stacklevel</span><span class="o">=</span><span class="n">stacklevel</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">310</span>                 <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">311</span>             <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">312</span> 
+<span class="g g-Whitespace">    </span><span class="mi">313</span>         <span class="k">return</span> <span class="n">wrapper</span>
+
+<span class="nn">~/anaconda3/lib/python3.7/site-packages/pandas/io/parsers/readers.py</span> in <span class="ni">read_csv</span><span class="nt">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, squeeze, prefix, mangle_dupe_cols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, error_bad_lines, warn_bad_lines, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">584</span>     <span class="n">kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds_defaults</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">585</span> 
+<span class="ne">--&gt; </span><span class="mi">586</span>     <span class="k">return</span> <span class="n">_read</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">587</span> 
+<span class="g g-Whitespace">    </span><span class="mi">588</span> 
+
+<span class="nn">~/anaconda3/lib/python3.7/site-packages/pandas/io/parsers/readers.py</span> in <span class="ni">_read</span><span class="nt">(filepath_or_buffer, kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">480</span> 
+<span class="g g-Whitespace">    </span><span class="mi">481</span>     <span class="c1"># Create the parser.</span>
+<span class="ne">--&gt; </span><span class="mi">482</span>     <span class="n">parser</span> <span class="o">=</span> <span class="n">TextFileReader</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">483</span> 
+<span class="g g-Whitespace">    </span><span class="mi">484</span>     <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">or</span> <span class="n">iterator</span><span class="p">:</span>
+
+<span class="nn">~/anaconda3/lib/python3.7/site-packages/pandas/io/parsers/readers.py</span> in <span class="ni">__init__</span><span class="nt">(self, f, engine, **kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">809</span>             <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">810</span> 
+<span class="ne">--&gt; </span><span class="mi">811</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_engine</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">812</span> 
+<span class="g g-Whitespace">    </span><span class="mi">813</span>     <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<span class="nn">~/anaconda3/lib/python3.7/site-packages/pandas/io/parsers/readers.py</span> in <span class="ni">_make_engine</span><span class="nt">(self, engine)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1038</span>             <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1039</span>         <span class="c1"># error: Too many arguments for &quot;ParserBase&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1040</span>         <span class="k">return</span> <span class="n">mapping</span><span class="p">[</span><span class="n">engine</span><span class="p">](</span><span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">)</span>  <span class="c1"># type: ignore[call-arg]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1041</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1042</span>     <span class="k">def</span> <span class="nf">_failover_to_python</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<span class="nn">~/anaconda3/lib/python3.7/site-packages/pandas/io/parsers/c_parser_wrapper.py</span> in <span class="ni">__init__</span><span class="nt">(self, src, **kwds)</span>
+<span class="g g-Whitespace">     </span><span class="mi">49</span> 
+<span class="g g-Whitespace">     </span><span class="mi">50</span>         <span class="c1"># open handles</span>
+<span class="ne">---&gt; </span><span class="mi">51</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_open_handles</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">52</span>         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="g g-Whitespace">     </span><span class="mi">53</span> 
+
+<span class="nn">~/anaconda3/lib/python3.7/site-packages/pandas/io/parsers/base_parser.py</span> in <span class="ni">_open_handles</span><span class="nt">(self, src, kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">227</span>             <span class="n">memory_map</span><span class="o">=</span><span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;memory_map&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">228</span>             <span class="n">storage_options</span><span class="o">=</span><span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;storage_options&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="ne">--&gt; </span><span class="mi">229</span>             <span class="n">errors</span><span class="o">=</span><span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding_errors&quot;</span><span class="p">,</span> <span class="s2">&quot;strict&quot;</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">230</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">231</span> 
+
+<span class="nn">~/anaconda3/lib/python3.7/site-packages/pandas/io/common.py</span> in <span class="ni">get_handle</span><span class="nt">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">704</span>                 <span class="n">encoding</span><span class="o">=</span><span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">705</span>                 <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">,</span>
+<span class="ne">--&gt; </span><span class="mi">706</span>                 <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">707</span>             <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">708</span>         <span class="k">else</span><span class="p">:</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;inputs/data_lyftSF2019/outputs/2019lyftSF_dataset.csv&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="wrangling">
+<h2>Wrangling<a class="headerlink" href="#wrangling" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="get-the-coordinate-for-all-unique-stations">
+<h3>Get the coordinate for all unique stations<a class="headerlink" href="#get-the-coordinate-for-all-unique-stations" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p>Identify the number of unique stations; beware of the difference between pick-up and drop-off locations;</p></li>
+<li><p>Group-by unique stations with their respective geographic coordinates</p></li>
+<li><p>Because it is likely that there are various (small) differences in geographic coordinates for any given station, justs average lat/long by their respective unique stations.</p></li>
+</ol>
+<div class="section" id="error-identified">
+<h4>Error Identified!<a class="headerlink" href="#error-identified" title="Permalink to this headline">¶</a></h4>
+<blockquote>
+<div><p>(3) When grouping by unique station names and averaging for the coordinates, I omitted to also groupby the unique count of drop-off locations! This caused strange issues, where I had decimal for my count in subsequent dataframes!</p>
+</div></blockquote>
+<blockquote>
+<div><p>Another mistake: using the method “unique_stations = count_drop_df.groupby([“end_station_name”,”count”]).mean()” will fail to group unique stations with <em>different counts</em>, henceforth unique stations will still be duplicated even if their coordinates are averaged. Using the aggregate function helped to sum and average the appropriate fields by unique station’s names.</p>
+</div></blockquote>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Using the count-trips-by-drop-off trips DF, identify the number of known unique stations.</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;1.&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">count_drop_df</span><span class="o">.</span><span class="n">end_station_name</span><span class="o">.</span><span class="n">unique</span><span class="p">()))</span> <span class="c1"># 446 unique location&#39;s names</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">count_drop_df</span><span class="p">))</span> <span class="c1"># rows = 3042</span>
+
+<span class="c1"># 2. Groupby the unique name of end_station_name &amp; 3. averaging coordinates by unique locations/stations</span>
+<span class="n">unique_stations_end</span> <span class="o">=</span><span class="n">count_drop_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;end_station_name&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s1">&#39;count&#39;</span><span class="p">:</span><span class="s1">&#39;sum&#39;</span><span class="p">,</span><span class="s1">&#39;end_station_latitude&#39;</span><span class="p">:</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span><span class="s1">&#39;end_station_longitude&#39;</span><span class="p">:</span><span class="s1">&#39;mean&#39;</span><span class="p">})</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;2.&#39;</span><span class="p">)</span>                                                                    
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">unique_stations_end</span><span class="p">))</span> <span class="c1"># 446 rows; much better!</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.
+446
+3042
+2.
+446
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="group-rides-by-drop-off-stations">
+<h3>Group Rides by Drop-off Stations<a class="headerlink" href="#group-rides-by-drop-off-stations" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="error-rectified">
+<h4>Error Rectified<a class="headerlink" href="#error-rectified" title="Permalink to this headline">¶</a></h4>
+<blockquote>
+<div><p>The percentage share of drop-off stations for all ridership activity in 2019 has radically changed: the busiest drop-off station accounts for 2.15% of all activities, as opposed to 12% as previously (and erroneaously) calculated. This can also be observed on the box-and-whisker plot, which shows more datapoints as outliers.</p>
+</div></blockquote>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">unique_stations_end</span> <span class="o">=</span> <span class="n">unique_stations_end</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span> 
+<span class="n">unique_stations_end</span> <span class="o">=</span> <span class="n">unique_stations_end</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;count&#39;</span><span class="p">:</span> <span class="s1">&#39;end_count&#39;</span><span class="p">})</span>
+
+<span class="n">unique_stations_end</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;end_count&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>end_station_name</th>
+      <th>end_count</th>
+      <th>end_station_latitude</th>
+      <th>end_station_longitude</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>360</th>
+      <td>San Francisco Caltrain Station 2  (Townsend St...</td>
+      <td>156438</td>
+      <td>37.77663920</td>
+      <td>-122.39552630</td>
+    </tr>
+    <tr>
+      <th>358</th>
+      <td>San Francisco Caltrain (Townsend St at 4th St)</td>
+      <td>152829</td>
+      <td>37.77659800</td>
+      <td>-122.39528200</td>
+    </tr>
+    <tr>
+      <th>362</th>
+      <td>San Francisco Ferry Building (Harry Bridges Pl...</td>
+      <td>144540</td>
+      <td>37.79539200</td>
+      <td>-122.39420300</td>
+    </tr>
+    <tr>
+      <th>298</th>
+      <td>Montgomery St BART Station (Market St at 2nd St)</td>
+      <td>143658</td>
+      <td>37.78962540</td>
+      <td>-122.40081100</td>
+    </tr>
+    <tr>
+      <th>272</th>
+      <td>Market St at 10th St</td>
+      <td>132852</td>
+      <td>37.77661900</td>
+      <td>-122.41738500</td>
+    </tr>
+    <tr>
+      <th>110</th>
+      <td>Berry St at 4th St</td>
+      <td>126693</td>
+      <td>37.77588000</td>
+      <td>-122.39317000</td>
+    </tr>
+    <tr>
+      <th>333</th>
+      <td>Powell St BART Station (Market St at 4th St)</td>
+      <td>112398</td>
+      <td>37.78637527</td>
+      <td>-122.40490437</td>
+    </tr>
+    <tr>
+      <th>391</th>
+      <td>Steuart St at Market St</td>
+      <td>99957</td>
+      <td>37.79413000</td>
+      <td>-122.39443000</td>
+    </tr>
+    <tr>
+      <th>407</th>
+      <td>The Embarcadero at Sansome St</td>
+      <td>99858</td>
+      <td>37.80477000</td>
+      <td>-122.40323400</td>
+    </tr>
+    <tr>
+      <th>334</th>
+      <td>Powell St BART Station (Market St at 5th St)</td>
+      <td>94620</td>
+      <td>37.78389936</td>
+      <td>-122.40844488</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">unique_stations_end</span><span class="o">.</span><span class="n">end_count</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;whiskers&#39;: [&lt;matplotlib.lines.Line2D at 0x7fca543f3cd0&gt;,
+  &lt;matplotlib.lines.Line2D at 0x7fca543f3250&gt;],
+ &#39;caps&#39;: [&lt;matplotlib.lines.Line2D at 0x7fca543f0790&gt;,
+  &lt;matplotlib.lines.Line2D at 0x7fca543eecd0&gt;],
+ &#39;boxes&#39;: [&lt;matplotlib.lines.Line2D at 0x7fca543f5890&gt;],
+ &#39;medians&#39;: [&lt;matplotlib.lines.Line2D at 0x7fca543ee1d0&gt;],
+ &#39;fliers&#39;: [&lt;matplotlib.lines.Line2D at 0x7fca543eb710&gt;],
+ &#39;means&#39;: []}
+</pre></div>
+</div>
+<img alt="../../_images/wrangling_6_1.png" src="../../_images/wrangling_6_1.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="group-rides-by-pick-up-stations">
+<h3>Group Rides by Pick-Up Stations<a class="headerlink" href="#group-rides-by-pick-up-stations" title="Permalink to this headline">¶</a></h3>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">unique_stations_start</span> <span class="o">=</span><span class="n">count_pickup_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;start_station_name&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s1">&#39;count&#39;</span><span class="p">:</span><span class="s1">&#39;sum&#39;</span><span class="p">,</span><span class="s1">&#39;start_station_latitude&#39;</span><span class="p">:</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span><span class="s1">&#39;start_station_longitude&#39;</span><span class="p">:</span><span class="s1">&#39;mean&#39;</span><span class="p">})</span>
+<span class="n">unique_stations_start</span> <span class="o">=</span> <span class="n">unique_stations_start</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span> 
+<span class="n">unique_stations_start</span> <span class="o">=</span> <span class="n">unique_stations_start</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;count&#39;</span><span class="p">:</span> <span class="s1">&#39;start_count&#39;</span><span class="p">})</span>
+
+<span class="n">unique_stations_start</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;start_count&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>start_station_name</th>
+      <th>start_count</th>
+      <th>start_station_latitude</th>
+      <th>start_station_longitude</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>272</th>
+      <td>Market St at 10th St</td>
+      <td>135174</td>
+      <td>37.77661900</td>
+      <td>-122.41738500</td>
+    </tr>
+    <tr>
+      <th>110</th>
+      <td>Berry St at 4th St</td>
+      <td>128886</td>
+      <td>37.77588000</td>
+      <td>-122.39317000</td>
+    </tr>
+    <tr>
+      <th>358</th>
+      <td>San Francisco Caltrain (Townsend St at 4th St)</td>
+      <td>120906</td>
+      <td>37.77659800</td>
+      <td>-122.39528200</td>
+    </tr>
+    <tr>
+      <th>362</th>
+      <td>San Francisco Ferry Building (Harry Bridges Pl...</td>
+      <td>117048</td>
+      <td>37.79539200</td>
+      <td>-122.39420300</td>
+    </tr>
+    <tr>
+      <th>360</th>
+      <td>San Francisco Caltrain Station 2  (Townsend St...</td>
+      <td>109728</td>
+      <td>37.77663920</td>
+      <td>-122.39552630</td>
+    </tr>
+    <tr>
+      <th>298</th>
+      <td>Montgomery St BART Station (Market St at 2nd St)</td>
+      <td>108243</td>
+      <td>37.78962540</td>
+      <td>-122.40081100</td>
+    </tr>
+    <tr>
+      <th>333</th>
+      <td>Powell St BART Station (Market St at 4th St)</td>
+      <td>102759</td>
+      <td>37.78637527</td>
+      <td>-122.40490437</td>
+    </tr>
+    <tr>
+      <th>391</th>
+      <td>Steuart St at Market St</td>
+      <td>97344</td>
+      <td>37.79413000</td>
+      <td>-122.39443000</td>
+    </tr>
+    <tr>
+      <th>233</th>
+      <td>Howard St at Beale St</td>
+      <td>94023</td>
+      <td>37.78975600</td>
+      <td>-122.39464300</td>
+    </tr>
+    <tr>
+      <th>334</th>
+      <td>Powell St BART Station (Market St at 5th St)</td>
+      <td>91743</td>
+      <td>37.78389936</td>
+      <td>-122.40844488</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">unique_stations_start</span><span class="o">.</span><span class="n">start_count</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;whiskers&#39;: [&lt;matplotlib.lines.Line2D at 0x7fca54424690&gt;,
+  &lt;matplotlib.lines.Line2D at 0x7fca54422bd0&gt;],
+ &#39;caps&#39;: [&lt;matplotlib.lines.Line2D at 0x7fca54422150&gt;,
+  &lt;matplotlib.lines.Line2D at 0x7fca5441f690&gt;],
+ &#39;boxes&#39;: [&lt;matplotlib.lines.Line2D at 0x7fca54427150&gt;],
+ &#39;medians&#39;: [&lt;matplotlib.lines.Line2D at 0x7fca5441db50&gt;],
+ &#39;fliers&#39;: [&lt;matplotlib.lines.Line2D at 0x7fca5441d0d0&gt;],
+ &#39;means&#39;: []}
+</pre></div>
+</div>
+<img alt="../../_images/wrangling_9_1.png" src="../../_images/wrangling_9_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="concat-both-df">
+<h3>Concat both DF<a class="headerlink" href="#concat-both-df" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id1">
+<h4>Error Rectified<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<blockquote>
+<div><p>Dataframe of unique start and end stations with their respective field attributes, with a length of 446 rows.</p>
+</div></blockquote>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counting_stations_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">unique_stations_end</span><span class="p">,</span> <span class="n">unique_stations_start</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;end_station_name&#39;</span><span class="p">,</span><span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;start_station_name&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">counting_stations_df</span><span class="p">))</span> <span class="c1"># 446 rows. Sounds about right!</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>446
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="further-cleaning">
+<h3>Further cleaning:<a class="headerlink" href="#further-cleaning" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Some typos in the name of stations is creating duplication (see example below); thus my objective will be to identify stations by matching lat and long coordinates:
+<img alt="error" src="content/section1/img/typo.png" /></p></li>
+</ul>
+<p>Yet this caused a great deal of confusion, mainly because when I attempted to identify rows with matching lat/long
+for a station’s type (pick-up or drop-off), I was not returning Woolsey St at Sacramento. I couldn’t understand why, until I realized that the float values of my coordinates were rounded, and that matches had to be exact. Thus, my lat/long appeared to be matching, but by setting the precisions of the decimal display to a higher number, we can finally observe the source of confusion:
+<img alt="error" src="content/section1/img/precision.png" /></p>
+<p>Therefore, all of my coordinate fields had to be rounded-up uniformly so that I could match possible duplicates.</p>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;start_station_latitude&#39;</span><span class="p">,</span> <span class="s1">&#39;start_station_longitude&#39;</span><span class="p">,</span><span class="s1">&#39;end_station_latitude&#39;</span><span class="p">,</span><span class="s1">&#39;end_station_longitude&#39;</span><span class="p">]</span>
+<span class="n">counting_stations_df</span><span class="p">[</span><span class="n">cols</span><span class="p">]</span> <span class="o">=</span> <span class="n">counting_stations_df</span><span class="p">[</span><span class="n">cols</span><span class="p">]</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Furthermore, the lat/long location ought to be unique per station, regardless of their designation as either pick-up or drop-off locations. The objective will be to identify mismatch in coordinates between pick-up and drop-off locations, and average coordinates if they differ.</p></li>
+</ul>
+<div class="section" id="identify-pick-up-stations-with-duplicates">
+<h4>Identify pick-up stations with duplicates<a class="headerlink" href="#identify-pick-up-stations-with-duplicates" title="Permalink to this headline">¶</a></h4>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counting_stations_df</span><span class="p">[</span><span class="n">counting_stations_df</span><span class="p">[</span><span class="n">cols</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">]]</span><span class="o">.</span><span class="n">duplicated</span><span class="p">(</span><span class="n">keep</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">==</span> <span class="kc">True</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>end_station_name</th>
+      <th>end_count</th>
+      <th>end_station_latitude</th>
+      <th>end_station_longitude</th>
+      <th>start_station_name</th>
+      <th>start_count</th>
+      <th>start_station_latitude</th>
+      <th>start_station_longitude</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>4</th>
+      <td>10th St at University Ave</td>
+      <td>10788</td>
+      <td>37.869060</td>
+      <td>-122.293400</td>
+      <td>10th St at University Ave</td>
+      <td>6408</td>
+      <td>37.869060</td>
+      <td>-122.293400</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>16th Depot Bike Fleet Station</td>
+      <td>183</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>16th Depot Bike Fleet Station</td>
+      <td>33</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>109</th>
+      <td>Berkeley Civic Center</td>
+      <td>24261</td>
+      <td>37.869060</td>
+      <td>-122.270556</td>
+      <td>Berkeley Civic Center</td>
+      <td>20643</td>
+      <td>37.869060</td>
+      <td>-122.270556</td>
+    </tr>
+    <tr>
+      <th>349</th>
+      <td>SF Test Station</td>
+      <td>57</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>SF Test Station</td>
+      <td>3</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>443</th>
+      <td>Woolsey St at Sacramento St</td>
+      <td>14748</td>
+      <td>37.850578</td>
+      <td>-122.278175</td>
+      <td>Woolsey St at Sacramento St</td>
+      <td>13317</td>
+      <td>37.850578</td>
+      <td>-122.278175</td>
+    </tr>
+    <tr>
+      <th>444</th>
+      <td>Woolsey St at Sacramento St1</td>
+      <td>24</td>
+      <td>37.850578</td>
+      <td>-122.278175</td>
+      <td>Woolsey St at Sacramento St1</td>
+      <td>21</td>
+      <td>37.850578</td>
+      <td>-122.278175</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="identify-drop-off-stations-with-duplicates">
+<h4>Identify drop-off stations with duplicates<a class="headerlink" href="#identify-drop-off-stations-with-duplicates" title="Permalink to this headline">¶</a></h4>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counting_stations_df</span><span class="p">[</span><span class="n">counting_stations_df</span><span class="p">[</span><span class="n">cols</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">]]</span><span class="o">.</span><span class="n">duplicated</span><span class="p">(</span><span class="n">keep</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">==</span> <span class="kc">True</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>end_station_name</th>
+      <th>end_count</th>
+      <th>end_station_latitude</th>
+      <th>end_station_longitude</th>
+      <th>start_station_name</th>
+      <th>start_count</th>
+      <th>start_station_latitude</th>
+      <th>start_station_longitude</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>13</th>
+      <td>16th Depot Bike Fleet Station</td>
+      <td>183</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>16th Depot Bike Fleet Station</td>
+      <td>33</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>349</th>
+      <td>SF Test Station</td>
+      <td>57</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>SF Test Station</td>
+      <td>3</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>443</th>
+      <td>Woolsey St at Sacramento St</td>
+      <td>14748</td>
+      <td>37.850578</td>
+      <td>-122.278175</td>
+      <td>Woolsey St at Sacramento St</td>
+      <td>13317</td>
+      <td>37.850578</td>
+      <td>-122.278175</td>
+    </tr>
+    <tr>
+      <th>444</th>
+      <td>Woolsey St at Sacramento St1</td>
+      <td>24</td>
+      <td>37.850578</td>
+      <td>-122.278175</td>
+      <td>Woolsey St at Sacramento St1</td>
+      <td>21</td>
+      <td>37.850578</td>
+      <td>-122.278175</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="merge-rows-with-matching-coordinates">
+<h4>Merge rows with matching coordinates<a class="headerlink" href="#merge-rows-with-matching-coordinates" title="Permalink to this headline">¶</a></h4>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aggregation_functions</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;end_count&#39;</span><span class="p">:</span> <span class="s1">&#39;sum&#39;</span><span class="p">,</span> <span class="s1">&#39;start_count&#39;</span><span class="p">:</span> <span class="s1">&#39;sum&#39;</span><span class="p">,</span> <span class="s1">&#39;end_station_name&#39;</span><span class="p">:</span> <span class="s1">&#39;first&#39;</span><span class="p">,</span><span class="s1">&#39;start_station_name&#39;</span><span class="p">:</span><span class="s1">&#39;first&#39;</span><span class="p">}</span>
+
+<span class="n">i</span> <span class="o">=</span> <span class="p">[</span><span class="mi">443</span><span class="p">,</span><span class="mi">444</span><span class="p">]</span>
+
+<span class="n">new_row</span> <span class="o">=</span> <span class="n">counting_stations_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;end_station_latitude&#39;</span><span class="p">,</span><span class="s1">&#39;end_station_longitude&#39;</span><span class="p">,</span><span class="s1">&#39;start_station_latitude&#39;</span><span class="p">,</span><span class="s1">&#39;start_station_longitude&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">aggregation_functions</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
+<span class="n">counting_stations_df</span> <span class="o">=</span> <span class="n">counting_stations_df</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_row</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+<span class="c1">#### Only the start station&#39;s latitude matches for this location, hence the groupby query has been modified.</span>
+<span class="n">aggregation_functions</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;end_count&#39;</span><span class="p">:</span> <span class="s1">&#39;sum&#39;</span><span class="p">,</span> <span class="s1">&#39;start_count&#39;</span><span class="p">:</span> <span class="s1">&#39;sum&#39;</span><span class="p">,</span> <span class="s1">&#39;end_station_name&#39;</span><span class="p">:</span> <span class="s1">&#39;first&#39;</span><span class="p">,</span><span class="s1">&#39;start_station_name&#39;</span><span class="p">:</span><span class="s1">&#39;first&#39;</span><span class="p">,</span><span class="s1">&#39;end_station_latitude&#39;</span><span class="p">:</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span><span class="s1">&#39;start_station_longitude&#39;</span><span class="p">:</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span><span class="s1">&#39;end_station_longitude&#39;</span><span class="p">:</span><span class="s1">&#39;mean&#39;</span><span class="p">}</span>
+
+<span class="n">i</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">109</span><span class="p">]</span>
+
+<span class="n">new_row</span> <span class="o">=</span> <span class="n">counting_stations_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;start_station_latitude&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">aggregation_functions</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
+<span class="n">counting_stations_df</span> <span class="o">=</span> <span class="n">counting_stations_df</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_row</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="drop-null-locations">
+<h4>Drop ‘Null’ locations<a class="headerlink" href="#drop-null-locations" title="Permalink to this headline">¶</a></h4>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">i</span> <span class="o">=</span> <span class="p">[</span><span class="mi">13</span><span class="p">,</span><span class="mi">349</span><span class="p">]</span>
+<span class="n">counting_stations_df</span> <span class="o">=</span> <span class="n">counting_stations_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="identify-stations-with-drop-off-and-pick-up-coordinates-that-do-not-match">
+<h4>Identify stations with drop-off and pick-up coordinates that do not match<a class="headerlink" href="#identify-stations-with-drop-off-and-pick-up-coordinates-that-do-not-match" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Upon reflection, it&#39;s not necessary to define a &#39;unique set&#39; of coordinate for any given station; this was mostly in the interest of consistency when processing the datapoints in QGIS. However we can assume reasonably that slight differences in the coordinates between &#39;pick-up&#39; and &#39;drop-off&#39; stations will not affect the &quot;true&quot; location of the station when intersected with city or neighborhood boundaries.
+</pre></div>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">counting_stations_df</span><span class="p">)</span>
+
+<span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;start_station_latitude&#39;</span><span class="p">,</span> <span class="s1">&#39;start_station_longitude&#39;</span><span class="p">,</span><span class="s1">&#39;end_station_latitude&#39;</span><span class="p">,</span><span class="s1">&#39;end_station_longitude&#39;</span><span class="p">]</span>
+
+<span class="n">counting_stations_df</span><span class="p">[</span><span class="s1">&#39;lat_diff&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">counting_stations_df</span><span class="p">[</span><span class="n">cols</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">==</span> <span class="n">counting_stations_df</span><span class="p">[</span><span class="n">cols</span><span class="p">[</span><span class="mi">2</span><span class="p">]],</span> <span class="s1">&#39;same&#39;</span><span class="p">,</span> <span class="s1">&#39;different&#39;</span><span class="p">)</span>
+<span class="n">counting_stations_df</span><span class="p">[</span><span class="s1">&#39;long_diff&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">counting_stations_df</span><span class="p">[</span><span class="n">cols</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="o">==</span> <span class="n">counting_stations_df</span><span class="p">[</span><span class="n">cols</span><span class="p">[</span><span class="mi">3</span><span class="p">]],</span> <span class="s1">&#39;same&#39;</span><span class="p">,</span> <span class="s1">&#39;different&#39;</span><span class="p">)</span>
+
+<span class="n">counting_stations_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>end_station_name</th>
+      <th>end_count</th>
+      <th>end_station_latitude</th>
+      <th>end_station_longitude</th>
+      <th>start_station_name</th>
+      <th>start_count</th>
+      <th>start_station_latitude</th>
+      <th>start_station_longitude</th>
+      <th>lat_diff</th>
+      <th>long_diff</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>10th Ave at E 15th St</td>
+      <td>2553</td>
+      <td>37.792714</td>
+      <td>-122.248780</td>
+      <td>10th Ave at E 15th St</td>
+      <td>2631</td>
+      <td>37.792714</td>
+      <td>-122.248780</td>
+      <td>same</td>
+      <td>same</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>10th St at Empire St</td>
+      <td>639</td>
+      <td>37.349426</td>
+      <td>-121.887619</td>
+      <td>10th St at Empire St</td>
+      <td>732</td>
+      <td>37.349426</td>
+      <td>-121.887619</td>
+      <td>same</td>
+      <td>same</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>10th St at Fallon St</td>
+      <td>12231</td>
+      <td>37.797673</td>
+      <td>-122.262997</td>
+      <td>10th St at Fallon St</td>
+      <td>11121</td>
+      <td>37.797673</td>
+      <td>-122.262997</td>
+      <td>same</td>
+      <td>same</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>10th St at Mission St</td>
+      <td>1356</td>
+      <td>37.355693</td>
+      <td>-121.892251</td>
+      <td>10th St at Mission St</td>
+      <td>1629</td>
+      <td>37.355693</td>
+      <td>-121.892251</td>
+      <td>same</td>
+      <td>same</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>11th St at Bryant St</td>
+      <td>38163</td>
+      <td>37.770030</td>
+      <td>-122.411726</td>
+      <td>11th St at Bryant St</td>
+      <td>31590</td>
+      <td>37.770030</td>
+      <td>-122.411726</td>
+      <td>same</td>
+      <td>same</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+</div>
+<div class="section" id="save-to-csv-and-export-to-qgis-to-intersect-the-station-datapoints-w-city-neighorhood-boundaries">
+<h3>4. Save to csv and export to QGIS to intersect the station datapoints w/city/neighorhood boundaries<a class="headerlink" href="#save-to-csv-and-export-to-qgis-to-intersect-the-station-datapoints-w-city-neighorhood-boundaries" title="Permalink to this headline">¶</a></h3>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># counting_stations_df.to_csv(&#39;outputs/to_gis.csv&#39;) </span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="data-processing-in-qgis">
+<h2>Data Processing in QGIS<a class="headerlink" href="#data-processing-in-qgis" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="import-csvs-which-have-been-intersected-with-the-boundaries-of-cities-and-sf-neighborhoods-in-qgis">
+<h3>Import CSVs which have been intersected with the boundaries of cities and SF neighborhoods in QGIS<a class="headerlink" href="#import-csvs-which-have-been-intersected-with-the-boundaries-of-cities-and-sf-neighborhoods-in-qgis" title="Permalink to this headline">¶</a></h3>
+<p>Plotting the stations on QGIS allowed to observe a few outlier/dummy values to remove from the dataset:</p>
+<p><img alt="QGIS1" src="content/section1/img/del1.png" /></p>
+<blockquote>
+<div><p>Note that some dummy variables, such as locations with lat/long of 0, where already dropped over the second iteration of wrangling.
+Another suitable method within Python to drop features that are out of proper geographic bounds would be to plot the lat and long of datapoints on a point data plot, and identify the outliers to exclude.</p>
+</div></blockquote>
+<p><img alt="QGIS2" src="content/section1/img/del2.png" /></p>
+<p>The dataframe was imported into QGIS as a csv, and mapped as points with the end station’s lat and long coordinates. Those points were overlaid with the shapefile layer of city boundaries for San Francisco (orange), the East Bay (purple) constituting of Oakland, Berkeley, and Emeryville, &amp; San Jose (green).</p>
+<p>Using the intersect function from the geoprocessing tool menu, each datapoint were intersected with their respective intersecting boundaries, capturing those boundaries’ attribute features (namely, city’s names and, additionally for San Francisco, the names of neighborhood’s boundaries).</p>
+<p><img alt="QGIS3" src="content/section1/img/Q_overlay.png" /></p>
+<p>Baywheels’ stations from the 2019 annual dataset overlaid on San Francisco’s neighborhoods.</p>
+<p><img alt="QGIS4" src="content/section1/img/Q_sf_intersect.png" /></p>
+</div>
+</div>
+<div class="section" id="re-importing-the-intersected-dataset">
+<h2>Re-importing the intersected dataset<a class="headerlink" href="#re-importing-the-intersected-dataset" title="Permalink to this headline">¶</a></h2>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+
+<span class="n">path</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;./inputs/modifiedFiles&#39;</span> <span class="c1"># use your path</span>
+<span class="n">files</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">path</span> <span class="o">+</span> <span class="s2">&quot;/*.csv&quot;</span><span class="p">)</span>
+
+<span class="n">li</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+    <span class="n">li</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
+<span class="n">frame</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">li</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">frame</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;city&#39;</span><span class="p">,</span> <span class="s1">&#39;n_name&#39;</span><span class="p">:</span> <span class="s1">&#39;SF_Neigh&#39;</span><span class="p">,</span><span class="s1">&#39;end_statio&#39;</span><span class="p">:</span><span class="s1">&#39;end_station&#39;</span><span class="p">,</span>
+                             <span class="s1">&#39;end_stat_1&#39;</span><span class="p">:</span><span class="s1">&#39;end_lat&#39;</span><span class="p">,</span><span class="s1">&#39;end_stat_2&#39;</span><span class="p">:</span><span class="s1">&#39;end_lon&#39;</span><span class="p">,</span>
+                             <span class="s1">&#39;start_st_1&#39;</span><span class="p">:</span><span class="s1">&#39;start_lat&#39;</span><span class="p">,</span><span class="s1">&#39;start_st_2&#39;</span><span class="p">:</span><span class="s1">&#39;start_lon&#39;</span><span class="p">,</span>
+                             <span class="s1">&#39;start_coun&#39;</span><span class="p">:</span><span class="s1">&#39;start_C&#39;</span><span class="p">,</span><span class="s1">&#39;end_count&#39;</span><span class="p">:</span><span class="s1">&#39;end_C&#39;</span><span class="p">,</span><span class="s1">&#39;start_stat&#39;</span><span class="p">:</span><span class="s1">&#39;start_station&#39;</span><span class="p">,</span>
+                             <span class="p">})</span>
+
+<span class="n">frame</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;field_1&#39;</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">frame</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;---------------&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">frame</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;---------------&#39;</span><span class="p">)</span>
+
+<span class="n">frame</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>end_station       object
+end_C              int64
+end_lat          float64
+end_lon          float64
+start_station     object
+start_C            int64
+start_lat        float64
+start_lon        float64
+lat_diff          object
+long_diff         object
+SF_Neigh          object
+city              object
+dtype: object
+---------------
+(440, 12)
+---------------
+CPU times: user 240 ms, sys: 16 ms, total: 256 ms
+Wall time: 257 ms
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>end_station</th>
+      <th>end_C</th>
+      <th>end_lat</th>
+      <th>end_lon</th>
+      <th>start_station</th>
+      <th>start_C</th>
+      <th>start_lat</th>
+      <th>start_lon</th>
+      <th>lat_diff</th>
+      <th>long_diff</th>
+      <th>SF_Neigh</th>
+      <th>city</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>11th St at Bryant St</td>
+      <td>38163</td>
+      <td>37.770030</td>
+      <td>-122.411726</td>
+      <td>11th St at Bryant St</td>
+      <td>31590</td>
+      <td>37.770030</td>
+      <td>-122.411726</td>
+      <td>same</td>
+      <td>same</td>
+      <td>South of Market</td>
+      <td>San Francisco</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>11th St at Natoma St</td>
+      <td>38580</td>
+      <td>37.773507</td>
+      <td>-122.416040</td>
+      <td>11th St at Natoma St</td>
+      <td>36849</td>
+      <td>37.773507</td>
+      <td>-122.416040</td>
+      <td>same</td>
+      <td>same</td>
+      <td>South of Market</td>
+      <td>San Francisco</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>14th Ave at Geary Blvd</td>
+      <td>612</td>
+      <td>37.780471</td>
+      <td>-122.472823</td>
+      <td>14th Ave at Geary Blvd</td>
+      <td>522</td>
+      <td>37.780471</td>
+      <td>-122.472823</td>
+      <td>same</td>
+      <td>same</td>
+      <td>Inner Richmond</td>
+      <td>San Francisco</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>14th St at Mission St</td>
+      <td>20079</td>
+      <td>37.768265</td>
+      <td>-122.420110</td>
+      <td>14th St at Mission St</td>
+      <td>20922</td>
+      <td>37.768265</td>
+      <td>-122.420110</td>
+      <td>same</td>
+      <td>same</td>
+      <td>Mission</td>
+      <td>San Francisco</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>15th St at Potrero Ave</td>
+      <td>24726</td>
+      <td>37.767079</td>
+      <td>-122.407359</td>
+      <td>15th St at Potrero Ave</td>
+      <td>24966</td>
+      <td>37.767079</td>
+      <td>-122.407359</td>
+      <td>same</td>
+      <td>same</td>
+      <td>Showplace Square</td>
+      <td>San Francisco</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="insights">
+<h2>Insights<a class="headerlink" href="#insights" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="distribution-of-stations-per-city-bay-wheels-dataset">
+<h3>Distribution of stations per city (Bay Wheels dataset)<a class="headerlink" href="#distribution-of-stations-per-city-bay-wheels-dataset" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="using-helper-functions-to-speed-up-the-process">
+<h4>Using Helper Functions to speed-up the process!<a class="headerlink" href="#using-helper-functions-to-speed-up-the-process" title="Permalink to this headline">¶</a></h4>
+<p>Storing the code into a .py file</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pieMaker</span> <span class="kn">import</span> <span class="o">*</span> <span class="c1"># (dataframe / attribute feature to groupby / piechart&#39;s dimensions)</span>
+
+<span class="n">pieMaker</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span><span class="s1">&#39;city&#39;</span><span class="p">,(</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fca544b9050&gt;
+</pre></div>
+</div>
+<img alt="../../_images/wrangling_37_1.png" src="../../_images/wrangling_37_1.png" />
+</div>
+</div>
+<p>Filter the dataframe down to stations in San Francisco only.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">frame_sf</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">frame</span><span class="p">[</span><span class="s1">&#39;city&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;San Francisco&#39;</span><span class="p">]</span>
+<span class="n">pieMaker</span><span class="p">(</span><span class="n">frame_sf</span><span class="p">,</span><span class="s1">&#39;SF_Neigh&#39;</span><span class="p">,(</span><span class="mi">30</span><span class="p">,</span><span class="mi">30</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fca54539190&gt;
+</pre></div>
+</div>
+<img alt="../../_images/wrangling_39_1.png" src="../../_images/wrangling_39_1.png" />
+</div>
+</div>
+<p><b>We’re only interested in insights for the city of San Francisco, which accounts for half of Bay Wheels’ 2019 Dataset</b></p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">frame_sf</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">frame</span><span class="p">[</span><span class="s1">&#39;city&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;San Francisco&#39;</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;There are &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">frame_sf</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39; unique stations in San Francisco&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>There are 221 unique stations in San Francisco
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="busiest-10-pick-up-station">
+<h2>Busiest 10 Pick-Up Station<a class="headerlink" href="#busiest-10-pick-up-station" title="Permalink to this headline">¶</a></h2>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">frame_sf</span><span class="p">[</span><span class="s1">&#39;start_P&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">frame_sf</span><span class="p">[</span><span class="s1">&#39;start_C&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">frame_sf</span><span class="p">[</span><span class="s1">&#39;start_C&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:.2%}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">)</span>
+
+<span class="n">frame_sf</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;start_C&#39;</span><span class="p">],</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;start_station&#39;</span><span class="p">,</span><span class="s1">&#39;SF_Neigh&#39;</span><span class="p">,</span><span class="s1">&#39;start_P&#39;</span><span class="p">])[</span><span class="s1">&#39;start_C&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/hp-nunes/anaconda3/envs/TEST/lib/python3.7/site-packages/ipykernel_launcher.py:1: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  &quot;&quot;&quot;Entry point for launching an IPython kernel.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>start_station                                              SF_Neigh                 start_P
+Market St at 10th St                                       South of Market          2.49%      135174
+Berry St at 4th St                                         Mission Bay              2.38%      128886
+San Francisco Caltrain (Townsend St at 4th St)             Mission Bay              2.23%      120906
+San Francisco Ferry Building (Harry Bridges Plaza)         Financial District       2.16%      117048
+San Francisco Caltrain Station 2  (Townsend St at 4th St)  Mission Bay              2.02%      109728
+Montgomery St BART Station (Market St at 2nd St)           Financial District       2.00%      108243
+Powell St BART Station (Market St at 4th St)               South of Market          1.90%      102759
+Steuart St at Market St                                    Financial District       1.80%       97344
+Howard St at Beale St                                      South of Market          1.74%       94023
+Powell St BART Station (Market St at 5th St)               Downtown / Union Square  1.69%       91743
+Name: start_C, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">frame_sf</span><span class="p">[</span><span class="s1">&#39;start_C&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fca545dbfd0&gt;
+</pre></div>
+</div>
+<img alt="../../_images/wrangling_44_1.png" src="../../_images/wrangling_44_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="busiest-neighborhoods-by-pick-ups">
+<h2>10 Busiest Neighborhoods by Pick-Ups<a class="headerlink" href="#busiest-neighborhoods-by-pick-ups" title="Permalink to this headline">¶</a></h2>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">((</span><span class="n">frame_sf</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;SF_Neigh&#39;</span><span class="p">])[</span><span class="s1">&#39;start_C&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">frame_sf</span><span class="p">[</span><span class="s1">&#39;start_C&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span><span class="o">.</span>
+                 <span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:.2%}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">))</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;start_C&#39;</span><span class="p">:</span><span class="s1">&#39;startN_P&#39;</span><span class="p">})</span>
+
+<span class="n">frame_sf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">frame_sf</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;SF_Neigh&#39;</span><span class="p">,</span><span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;SF_Neigh&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;startN_P_y&#39;</span><span class="p">:</span><span class="s1">&#39;startN_P&#39;</span><span class="p">})</span>
+
+<span class="n">frame_sf</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;SF_Neigh&#39;</span><span class="p">,</span><span class="s1">&#39;startN_P&#39;</span><span class="p">])[</span><span class="s1">&#39;start_C&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SF_Neigh                 startN_P
+South of Market          20.78%      1126017
+Mission Bay              12.35%       669141
+Mission                  10.61%       574788
+Financial District       10.36%       561132
+Showplace Square         4.28%        231762
+Rincon Hill              3.97%        215292
+Downtown / Union Square  3.70%        200550
+Northern Waterfront      3.55%        192624
+Civic Center             2.80%        151623
+Potrero Hill             2.34%        126684
+Name: start_C, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="busiest-10-drop-off-station">
+<h2>Busiest 10 Drop-Off Station<a class="headerlink" href="#busiest-10-drop-off-station" title="Permalink to this headline">¶</a></h2>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">frame_sf</span><span class="p">[</span><span class="s1">&#39;end_P&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">frame_sf</span><span class="p">[</span><span class="s1">&#39;end_C&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">frame_sf</span><span class="p">[</span><span class="s1">&#39;end_C&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:.2%}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">)</span>
+
+<span class="n">frame_sf</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;end_C&#39;</span><span class="p">],</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;end_station&#39;</span><span class="p">,</span><span class="s1">&#39;SF_Neigh&#39;</span><span class="p">,</span><span class="s1">&#39;end_P&#39;</span><span class="p">])[</span><span class="s1">&#39;end_C&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>end_station                                                SF_Neigh                 end_P
+San Francisco Caltrain Station 2  (Townsend St at 4th St)  Mission Bay              2.89%    156438
+San Francisco Caltrain (Townsend St at 4th St)             Mission Bay              2.82%    152829
+San Francisco Ferry Building (Harry Bridges Plaza)         Financial District       2.67%    144540
+Montgomery St BART Station (Market St at 2nd St)           Financial District       2.65%    143658
+Market St at 10th St                                       South of Market          2.45%    132852
+Berry St at 4th St                                         Mission Bay              2.34%    126693
+Powell St BART Station (Market St at 4th St)               South of Market          2.08%    112398
+Steuart St at Market St                                    Financial District       1.85%     99957
+The Embarcadero at Sansome St                              Northern Waterfront      1.84%     99858
+Powell St BART Station (Market St at 5th St)               Downtown / Union Square  1.75%     94620
+Name: end_C, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">frame_sf</span><span class="p">[</span><span class="s1">&#39;end_C&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fca54666810&gt;
+</pre></div>
+</div>
+<img alt="../../_images/wrangling_49_1.png" src="../../_images/wrangling_49_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="busiest-neighborhoods-by-drop-offs">
+<h2>10 Busiest Neighborhoods by Drop-offs<a class="headerlink" href="#busiest-neighborhoods-by-drop-offs" title="Permalink to this headline">¶</a></h2>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">((</span><span class="n">frame_sf</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;SF_Neigh&#39;</span><span class="p">])[</span><span class="s1">&#39;end_C&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">frame_sf</span><span class="p">[</span><span class="s1">&#39;end_C&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span><span class="o">.</span>
+                 <span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:.2%}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">))</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;end_C&#39;</span><span class="p">:</span><span class="s1">&#39;endN_P&#39;</span><span class="p">})</span>
+
+<span class="n">frame_sf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">frame_sf</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;SF_Neigh&#39;</span><span class="p">,</span><span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;SF_Neigh&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;endN_P_y&#39;</span><span class="p">:</span><span class="s1">&#39;endN_P&#39;</span><span class="p">})</span>
+
+<span class="n">frame_sf</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;SF_Neigh&#39;</span><span class="p">,</span><span class="s1">&#39;endN_P&#39;</span><span class="p">])[</span><span class="s1">&#39;end_C&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SF_Neigh                 endN_P
+South of Market          21.01%    1137603
+Mission Bay              13.83%     748824
+Financial District       11.67%     632007
+Mission                  11.01%     596355
+Showplace Square         4.78%      258987
+Northern Waterfront      3.88%      209883
+Rincon Hill              3.80%      205617
+Downtown / Union Square  3.76%      203658
+Civic Center             2.73%      147597
+Potrero Hill             2.39%      129258
+Name: end_C, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="busiest-routes">
+<h2>Busiest Routes<a class="headerlink" href="#busiest-routes" title="Permalink to this headline">¶</a></h2>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">count_trips_df</span><span class="p">[</span><span class="s1">&#39;route&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;From &quot;</span> <span class="o">+</span> <span class="n">count_trips_df</span><span class="o">.</span><span class="n">start_station_name</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; to &quot;</span> <span class="o">+</span> <span class="n">count_trips_df</span><span class="o">.</span><span class="n">end_station_name</span>
+
+<span class="n">routes_df</span> <span class="o">=</span> <span class="n">count_trips_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;route&#39;</span><span class="p">,</span><span class="s1">&#39;start_station_name&#39;</span><span class="p">,</span><span class="s1">&#39;end_station_name&#39;</span><span class="p">,</span><span class="s1">&#39;count&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+<span class="n">routes_df</span> <span class="o">=</span> <span class="n">routes_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">routes_df</span><span class="p">[[</span><span class="s1">&#39;end_station_name&#39;</span><span class="p">,</span><span class="s1">&#39;start_station_name&#39;</span><span class="p">,</span><span class="s1">&#39;start_station_latitude&#39;</span><span class="p">,</span><span class="s1">&#39;start_station_longitude&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;end_station_latitude&#39;</span><span class="p">,</span><span class="s1">&#39;end_station_longitude&#39;</span><span class="p">,</span><span class="s1">&#39;count&#39;</span><span class="p">,</span><span class="s1">&#39;route&#39;</span><span class="p">]],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">routes_df</span> <span class="o">=</span> <span class="n">routes_df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
+
+<span class="c1">### Merge San Francisco&#39;s Neighborhoods to unique start/end stations</span>
+<span class="n">Neigh_merge_s</span> <span class="o">=</span> <span class="n">frame_sf</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;SF_Neigh&#39;</span><span class="p">,</span><span class="s1">&#39;start_station&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+<span class="n">Neigh_merge_e</span> <span class="o">=</span> <span class="n">frame_sf</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;SF_Neigh&#39;</span><span class="p">,</span><span class="s1">&#39;end_station&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+
+<span class="n">Neigh_merge_s</span> <span class="o">=</span> <span class="n">Neigh_merge_s</span><span class="p">[[</span><span class="s1">&#39;SF_Neigh&#39;</span><span class="p">,</span><span class="s1">&#39;start_station&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">Neigh_merge_s</span><span class="p">[[</span><span class="s1">&#39;SF_Neigh&#39;</span><span class="p">,</span><span class="s1">&#39;start_station&#39;</span><span class="p">]],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">Neigh_merge_e</span> <span class="o">=</span> <span class="n">Neigh_merge_e</span><span class="p">[[</span><span class="s1">&#39;SF_Neigh&#39;</span><span class="p">,</span><span class="s1">&#39;end_station&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">Neigh_merge_e</span><span class="p">[[</span><span class="s1">&#39;SF_Neigh&#39;</span><span class="p">,</span><span class="s1">&#39;end_station&#39;</span><span class="p">]],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
+<span class="n">routesDF1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="n">Neigh_merge_s</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="n">routes_df</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;start_station&#39;</span><span class="p">,</span> <span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;start_station_name&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;SF_Neigh&#39;</span><span class="p">:</span><span class="s1">&#39;SF_Neigh_start&#39;</span><span class="p">,</span><span class="s1">&#39;count&#39;</span><span class="p">:</span><span class="s1">&#39;route_C&#39;</span><span class="p">})</span>
+<span class="n">routesDF</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="n">Neigh_merge_e</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="n">routesDF1</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;end_station&#39;</span><span class="p">,</span> <span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;end_station_name&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;SF_Neigh&#39;</span><span class="p">:</span><span class="s1">&#39;SF_Neigh_end&#39;</span><span class="p">})</span>
+
+<span class="n">routesDF</span> <span class="o">=</span> <span class="n">routesDF</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">routesDF</span><span class="p">[[</span><span class="s1">&#39;start_station&#39;</span><span class="p">]],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1">###</span>
+
+<span class="c1">### Find the Percentage</span>
+<span class="n">routesDF</span><span class="p">[</span><span class="s1">&#39;route_P&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">routesDF</span><span class="p">[</span><span class="s1">&#39;route_C&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">routesDF</span><span class="p">[</span><span class="s1">&#39;route_C&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:.2%}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">)</span>
+<span class="c1">###</span>
+
+<span class="n">routesDF</span><span class="p">[</span><span class="s1">&#39;route_Districts&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;From &quot;</span> <span class="o">+</span> <span class="n">routesDF</span><span class="o">.</span><span class="n">SF_Neigh_start</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; to &quot;</span> <span class="o">+</span> <span class="n">routesDF</span><span class="o">.</span><span class="n">SF_Neigh_end</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">routesDF</span><span class="p">))</span>
+<span class="c1"># routesDF.sort_values([&#39;route_C&#39;],ascending=False).head(10)</span>
+
+<span class="n">routesDF</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;route_Districts&#39;</span><span class="p">)[</span><span class="s1">&#39;route_C&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s1">&#39;route_C&#39;</span><span class="p">],</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">routesDF</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>35623
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>SF_Neigh_end</th>
+      <th>end_station</th>
+      <th>SF_Neigh_start</th>
+      <th>route</th>
+      <th>start_station_name</th>
+      <th>end_station_name</th>
+      <th>route_C</th>
+      <th>route_P</th>
+      <th>route_Districts</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Alamo Square</td>
+      <td>Alamo Square (Steiner St at Fulton St)</td>
+      <td>Alamo Square</td>
+      <td>From Alamo Square (Steiner St at Fulton St) to...</td>
+      <td>Alamo Square (Steiner St at Fulton St)</td>
+      <td>Alamo Square (Steiner St at Fulton St)</td>
+      <td>133</td>
+      <td>0.01%</td>
+      <td>From Alamo Square to Alamo Square</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Alamo Square</td>
+      <td>Alamo Square (Steiner St at Fulton St)</td>
+      <td>Alamo Square</td>
+      <td>From Grove St at Divisadero to Alamo Square (S...</td>
+      <td>Grove St at Divisadero</td>
+      <td>Alamo Square (Steiner St at Fulton St)</td>
+      <td>28</td>
+      <td>0.00%</td>
+      <td>From Alamo Square to Alamo Square</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Alamo Square</td>
+      <td>Alamo Square (Steiner St at Fulton St)</td>
+      <td>Anza Vista</td>
+      <td>From O'Farrell St at Divisadero St to Alamo Sq...</td>
+      <td>O'Farrell St at Divisadero St</td>
+      <td>Alamo Square (Steiner St at Fulton St)</td>
+      <td>28</td>
+      <td>0.00%</td>
+      <td>From Anza Vista to Alamo Square</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Alamo Square</td>
+      <td>Alamo Square (Steiner St at Fulton St)</td>
+      <td>Anza Vista</td>
+      <td>From O'Farrell St at Masonic Ave to Alamo Squa...</td>
+      <td>O'Farrell St at Masonic Ave</td>
+      <td>Alamo Square (Steiner St at Fulton St)</td>
+      <td>1</td>
+      <td>0.00%</td>
+      <td>From Anza Vista to Alamo Square</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Alamo Square</td>
+      <td>Alamo Square (Steiner St at Fulton St)</td>
+      <td>Bernal Heights</td>
+      <td>From 29th St at Tiffany Ave to Alamo Square (S...</td>
+      <td>29th St at Tiffany Ave</td>
+      <td>Alamo Square (Steiner St at Fulton St)</td>
+      <td>7</td>
+      <td>0.00%</td>
+      <td>From Bernal Heights to Alamo Square</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>35618</th>
+      <td>Western Addition</td>
+      <td>Turk St at Fillmore St</td>
+      <td>Western Addition</td>
+      <td>From Scott St at Golden Gate Ave to Turk St at...</td>
+      <td>Scott St at Golden Gate Ave</td>
+      <td>Turk St at Fillmore St</td>
+      <td>69</td>
+      <td>0.00%</td>
+      <td>From Western Addition to Western Addition</td>
+    </tr>
+    <tr>
+      <th>35619</th>
+      <td>Western Addition</td>
+      <td>Turk St at Fillmore St</td>
+      <td>Western Addition</td>
+      <td>From Turk St at Fillmore St to Turk St at Fill...</td>
+      <td>Turk St at Fillmore St</td>
+      <td>Turk St at Fillmore St</td>
+      <td>85</td>
+      <td>0.00%</td>
+      <td>From Western Addition to Western Addition</td>
+    </tr>
+    <tr>
+      <th>35620</th>
+      <td>Westwood Park</td>
+      <td>Frida Kahlo Way at Cloud Cir</td>
+      <td>Civic Center</td>
+      <td>From Market St at Franklin St to Frida Kahlo W...</td>
+      <td>Market St at Franklin St</td>
+      <td>Frida Kahlo Way at Cloud Cir</td>
+      <td>1</td>
+      <td>0.00%</td>
+      <td>From Civic Center to Westwood Park</td>
+    </tr>
+    <tr>
+      <th>35621</th>
+      <td>Westwood Park</td>
+      <td>Frida Kahlo Way at Cloud Cir</td>
+      <td>Sunnyside</td>
+      <td>From Judson Ave at Gennessee St to Frida Kahlo...</td>
+      <td>Judson Ave at Gennessee St</td>
+      <td>Frida Kahlo Way at Cloud Cir</td>
+      <td>1</td>
+      <td>0.00%</td>
+      <td>From Sunnyside to Westwood Park</td>
+    </tr>
+    <tr>
+      <th>35622</th>
+      <td>Westwood Park</td>
+      <td>Frida Kahlo Way at Cloud Cir</td>
+      <td>Westwood Park</td>
+      <td>From Frida Kahlo Way at Cloud Cir to Frida Kah...</td>
+      <td>Frida Kahlo Way at Cloud Cir</td>
+      <td>Frida Kahlo Way at Cloud Cir</td>
+      <td>5</td>
+      <td>0.00%</td>
+      <td>From Westwood Park to Westwood Park</td>
+    </tr>
+  </tbody>
+</table>
+<p>35623 rows × 9 columns</p>
+</div></div></div>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># routesDF.to_csv(&#39;outputs/routes_dataset.csv&#39;) </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">routesDF</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="c1"># routesDF.groupby([&#39;route_Districts&#39;]).size().reset_index(name=&#39;counts&#39;).sort_values(&#39;counts&#39;,ascending=False)</span>
+
+
+<span class="n">new_df</span><span class="o">=</span><span class="n">routesDF</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;SF_Neigh_start&#39;</span><span class="p">,</span> <span class="s1">&#39;SF_Neigh_end&#39;</span><span class="p">])[</span><span class="s1">&#39;route_C&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;counts&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;counts&#39;</span><span class="p">,</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">new_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(35623, 9)
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>SF_Neigh_start</th>
+      <th>SF_Neigh_end</th>
+      <th>counts</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1908</th>
+      <td>South of Market</td>
+      <td>South of Market</td>
+      <td>102965</td>
+    </tr>
+    <tr>
+      <th>1165</th>
+      <td>Mission</td>
+      <td>Mission</td>
+      <td>61677</td>
+    </tr>
+    <tr>
+      <th>1892</th>
+      <td>South of Market</td>
+      <td>Mission Bay</td>
+      <td>61676</td>
+    </tr>
+    <tr>
+      <th>1232</th>
+      <td>Mission Bay</td>
+      <td>South of Market</td>
+      <td>51383</td>
+    </tr>
+    <tr>
+      <th>1203</th>
+      <td>Mission Bay</td>
+      <td>Financial District</td>
+      <td>49166</td>
+    </tr>
+    <tr>
+      <th>682</th>
+      <td>Financial District</td>
+      <td>Mission Bay</td>
+      <td>47852</td>
+    </tr>
+    <tr>
+      <th>1183</th>
+      <td>Mission</td>
+      <td>South of Market</td>
+      <td>33688</td>
+    </tr>
+    <tr>
+      <th>1879</th>
+      <td>South of Market</td>
+      <td>Financial District</td>
+      <td>33088</td>
+    </tr>
+    <tr>
+      <th>1891</th>
+      <td>South of Market</td>
+      <td>Mission</td>
+      <td>29946</td>
+    </tr>
+    <tr>
+      <th>699</th>
+      <td>Financial District</td>
+      <td>South of Market</td>
+      <td>27446</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="total-number-of-routes-by-neighborhoods">
+<h2>Total number of routes by Neighborhoods<a class="headerlink" href="#total-number-of-routes-by-neighborhoods" title="Permalink to this headline">¶</a></h2>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">routes_N</span> <span class="o">=</span> <span class="n">routesDF</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;SF_Neigh_end&#39;</span><span class="p">)[[</span><span class="s1">&#39;route_C&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="c1">### Find the Percentage</span>
+<span class="n">routes_N</span><span class="p">[</span><span class="s1">&#39;routeN_P&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">routes_N</span><span class="p">[</span><span class="s1">&#39;route_C&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">routes_N</span><span class="p">[</span><span class="s1">&#39;route_C&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:.2%}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">)</span>
+<span class="c1">###</span>
+
+<span class="n">routes_N</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s1">&#39;route_C&#39;</span><span class="p">],</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>route_C</th>
+      <th>routeN_P</th>
+    </tr>
+    <tr>
+      <th>SF_Neigh_end</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>South of Market</th>
+      <td>377029</td>
+      <td>21.01%</td>
+    </tr>
+    <tr>
+      <th>Mission Bay</th>
+      <td>248246</td>
+      <td>13.84%</td>
+    </tr>
+    <tr>
+      <th>Financial District</th>
+      <td>209531</td>
+      <td>11.68%</td>
+    </tr>
+    <tr>
+      <th>Mission</th>
+      <td>197713</td>
+      <td>11.02%</td>
+    </tr>
+    <tr>
+      <th>Showplace Square</th>
+      <td>85883</td>
+      <td>4.79%</td>
+    </tr>
+    <tr>
+      <th>Northern Waterfront</th>
+      <td>69710</td>
+      <td>3.89%</td>
+    </tr>
+    <tr>
+      <th>Rincon Hill</th>
+      <td>68077</td>
+      <td>3.79%</td>
+    </tr>
+    <tr>
+      <th>Downtown / Union Square</th>
+      <td>67508</td>
+      <td>3.76%</td>
+    </tr>
+    <tr>
+      <th>Civic Center</th>
+      <td>48917</td>
+      <td>2.73%</td>
+    </tr>
+    <tr>
+      <th>Potrero Hill</th>
+      <td>42852</td>
+      <td>2.39%</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./content/section1"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By HP-Nunes<br/>
+        
+            &copy; Copyright 2021.<br/>
+          <div class="extra_footer">
+            <script>mermaid.init();</script> <div class="container-lg mt-3"> <div class="row"> <div class="footerImages"> <a href="https://github.com/HP-Nunes" target="_blank"><img src="https://img.shields.io/badge/github%20-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white" alt="GitHub"></a> <a href="https://twitter.com/geocuriosity" target="_blank"><img src="https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white" alt="@geocuriosity"></a> <a href="https://www.linkedin.com/in/hp-nunes/" target="_blank"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"></a> <a class="reference external" href="https://jupyter.org/try" target="_blank"><img src="https://img.shields.io/badge/Made%20with-Jupyter-orange?style=for-the-badge&logo=Jupyter" alt="Made withJupyter"></a> </div> <div class="container-lg mt-3"> <a href="mailto:contact@hpnunes.com"><img src="https://img.shields.io/badge/Contact%20me-contact%40hpnunes.com-9cf" alt="contact@hpnunes.com"></a> <a href="https://hpnunes.com/" target="_blank"><img src="https://img.shields.io/badge/My%20website-https%3A%2F%2Fhpnunes.com%2F-blue" alt="https://hpnunes.com/"></a> <a href="https://github.com/HP-Nunes/HP-Nunes.github.io" target="_blank"><img src="https://img.shields.io/github/last-commit/HP-Nunes/HP-Nunes.github.io" alt="update to project's repo"></a> </div> <div class="row_footer my-3"> © 2021 </div>
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

@@ -2,6 +2,7 @@ jupyter-book
 matplotlib
 numpy
 markdown
+sphinx-book-theme
 alabaster==0.7.12
 anyio==2.2.0
 argon2-cffi==20.1.0
