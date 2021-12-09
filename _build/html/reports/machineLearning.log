@@ -22,7 +22,7 @@ df = pd.read_csv(r'inputs/data_lyftSF2019/outputs/lyftSF19.csv',float_precision=
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mFileNotFoundError[0m                         Traceback (most recent call last)
-[0;32m/tmp/ipykernel_20617/2036727155.py[0m in [0;36m<module>[0;34m[0m
+[0;32m/tmp/ipykernel_25756/2036727155.py[0m in [0;36m<module>[0;34m[0m
 [0;32m----> 1[0;31m [0mdf[0m [0;34m=[0m [0mpd[0m[0;34m.[0m[0mread_csv[0m[0;34m([0m[0;34mr'inputs/data_lyftSF2019/outputs/lyftSF19.csv'[0m[0;34m,[0m[0mfloat_precision[0m[0;34m=[0m[0;32mNone[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 [0m
 [0;32m~/anaconda3/lib/python3.7/site-packages/pandas/util/_decorators.py[0m in [0;36mwrapper[0;34m(*args, **kwargs)[0m
