@@ -2,7 +2,6 @@ jupyter-book
 matplotlib
 numpy
 markdown
-sphinx-book-theme
 alabaster==0.7.12
 anyio==2.2.0
 argon2-cffi==20.1.0
@@ -86,8 +85,8 @@ smmap==4.0.0
 sniffio==1.2.0
 snowballstemmer==2.1.0
 soupsieve==2.2.1
-Sphinx==3.5.4
-sphinx-book-theme~=0.1.4
+Sphinx -U
+sphinx-book-theme -U
 sphinx-comments==0.0.3
 sphinx-copybutton==0.3.1
 sphinx-panels~=0.6.0
