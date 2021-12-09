@@ -30,6 +30,7 @@ repository:
 # Add GitHub buttons to your book
 # See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
 html:
+  html_theme: "sphinx_book_theme"
   comments:
     utterances:
       repo: "github-org/github-repo"
