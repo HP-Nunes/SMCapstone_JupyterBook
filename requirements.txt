@@ -85,8 +85,8 @@ smmap==4.0.0
 sniffio==1.2.0
 snowballstemmer==2.1.0
 soupsieve==2.2.1
-Sphinx --upgrade
-sphinx-book-theme --upgrade
+Sphinx--upgrade
+sphinx-book-theme--upgrade
 sphinx-comments==0.0.3
 sphinx-copybutton==0.3.1
 sphinx-panels~=0.6.0
