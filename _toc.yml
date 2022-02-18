@@ -10,26 +10,28 @@ parts:
 - caption: 
   chapters:
   - file: content/section0/timeline
-- caption: Data Wrangling 1️⃣
+- caption: 
   chapters:
     - file: content/section1/ETL
       # sections:
       #     - file: content/section1/subsection/1_extract
       #     - file: content/section1/subsection/2_transform
       #     - file: content/section1/subsection/3_load 
-- caption: Descriptive Data Analysis 2️⃣ 🚧
+- caption: 🚧 Key Performance Indicators 
   chapters:
+    - file: content/section2/thebigpicture
+    - file: content/section2/connectivity
     - file: content/section2/temporal_trends 
       # sections:
       # - file: content/section2/subsection/tempTrends
       # - file: content/section2/subsection/insight_time
       # - file: content/section2/subsection/dataViz_notebook
-    - file: content/section2/spatial_trends 
-      sections:
-      - file: content/section2/subsection/insight_location
-    - file: content/section2/revenue_trends 
-      sections:
-      - file: content/section2/subsection/insight_revenue
-- caption: Predictive Modelling 3️⃣ 🚧
-  chapters:
-  - file: content/section3/machineLearning 
+    # - file: content/section2/spatial_trends 
+    #   sections:
+    #   - file: content/section2/subsection/insight_location
+    # - file: content/section2/revenue_trends 
+    #   sections:
+    #   - file: content/section2/subsection/insight_revenue
+# - caption: 🚧 Modelling 
+#   chapters:
+#   - file: content/section3/machineLearning 

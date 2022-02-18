@@ -1,0 +1,466 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Connectivity &#8212; Bay Wheels Data Analysis</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script kind="utterances">
+
+    var commentsRunWhenDOMLoaded = cb => {
+    if (document.readyState != 'loading') {
+        cb()
+    } else if (document.addEventListener) {
+        document.addEventListener('DOMContentLoaded', cb)
+    } else {
+        document.attachEvent('onreadystatechange', function() {
+        if (document.readyState == 'complete') cb()
+        })
+    }
+}
+
+var addUtterances = () => {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "https://utteranc.es/client.js";
+    script.async = "async";
+
+    script.setAttribute("repo", "github-org/github-repo");
+    script.setAttribute("issue-term", "pathname");
+    script.setAttribute("theme", "github-light");
+    script.setAttribute("label", "💬 comment");
+    script.setAttribute("crossorigin", "anonymous");
+
+    sections = document.querySelectorAll("div.section");
+    if (sections !== null) {
+        section = sections[sections.length-1];
+        section.appendChild(script);
+    }
+}
+commentsRunWhenDOMLoaded(addUtterances);
+</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Temporal Analysis" href="temporal_trends.html" />
+    <link rel="prev" title="The Big Picture" href="thebigpicture.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Bay Wheels Data Analysis</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../intro.html">
+   SharpestMinds Capstone Project
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../section0/foreword.html">
+   Foreword
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../section0/timeline.html">
+   Key Events Timeline
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../section1/ETL.html">
+   ETL Process
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  🚧 Key Performance Indicators
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="thebigpicture.html">
+   The Big Picture
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Connectivity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="temporal_trends.html">
+   Temporal Analysis
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="spatial_trends.html">
+   Spatial Trends
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="subsection/insight_location.html">
+     Trends By Locations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="revenue_trends.html">
+   Revenue Trends
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="subsection/insight_revenue.html">
+     Estimating 2019 Revenue
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  🚧 Predictive Modelling
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../section3/machineLearning.html">
+   Machine Learning, Test 1
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/content/section2/connectivity.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fcontent/section2/connectivity.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/executablebooks/jupyter-book/edit/master/docs/content/section2/connectivity.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#measuring-connectivity">
+   Measuring Connectivity:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-overview">
+   Data Overview
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#apropos-the-data">
+   Apropos the data
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="connectivity">
+<h1>Connectivity<a class="headerlink" href="#connectivity" title="Permalink to this headline">¶</a></h1>
+<p><br><br></p>
+<p style="font-size: 0.9rem;font-style: italic;"><img style="display: block;" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/52e52df7-d399-41df-bc7e-7bbb5603fc7f/dcamvsi-0fdebd42-401b-46bd-a866-69c4216bd1b1.gif" alt="A Turning Gear"><a href="https://www.deviantart.com/retsamys/art/A-Turning-Gear-743457906">"A Turning Gear"</a><span> by <a href="https://www.deviantart.com/retsamys">RetSamys</a></span></p>
+<p><b>Connectivity</b> performance in micro-mobility is defined by the effects of reducing the negative externalities of traffic congestion, and in creating nodal networks of mobility by inter-linking existing commuting services. In the urban commuting ecosystem, the objectives of bike-shares are <a href='https://fi.ramboll.com/-/media/files/rfi/publications/ramboll_micro-mobility-2020.pdf?la=fi' target="_blank">reducing vehicle congestion and parking demand for short and medium-distance trips</a>.</p>
+<h2>Micro-mobility: sustainable for the climate?</h2>
+<p>The promise of micro-mobility services is to present an alternative to motorized transportation, contributing to the cumulative offset of emissions. However, a <a href='https://www.sciencedirect.com/science/article/pii/S1361920921004296' target="_blank"> study</a> conducted in Switzerland suggests that "personal e-scooters and e-bikes emit less CO2 than the transport modes they replace, while shared e-scooters and e-bikes emit more CO2 than the transport modes they replace". Bike-shares therefore lose in sustainability if the distance being covered substitutes less for distances covered by cars, and moreso for trips qualified as 'walking distance' (< 1 Km). Therefore, if micro-mobility bike-share is to have a substantial impact on urban emissions, it needs to fill a travelling niche equivalent to medium-driving distance.</p>
+<div class="section" id="measuring-connectivity">
+<h2>Measuring Connectivity:<a class="headerlink" href="#measuring-connectivity" title="Permalink to this headline">¶</a></h2>
+<ol class="simple">
+<li><p>What is the distribution of bike-share trips by walking and driving distance?</p></li>
+<li><p>How does bike-share link-up with existing public transportation nodes?</p></li>
+<li><p>What is the share of bike-share trips that could be qualified as ‘first’ and ‘last’ mile commute?</p></li>
+</ol>
+</div>
+<div class="section" id="data-overview">
+<h2>Data Overview<a class="headerlink" href="#data-overview" title="Permalink to this headline">¶</a></h2>
+<style>
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+}
+</style>
+<br>
+Over the course of three full-years of operations, San Franciscans have riden nearly 2 Km (1.24 mi) on average. Thus, the overall tendency of bike-share riding in the city is not to substitute for trips within 'walking distance' (< 1Km). Furthermore, since <a href='https://nacto.org/shared-micromobility-2019/' target="_blank">35% of all car trips in the U.S. are under 3.22 Km (2 mi)</a>, bike-share commute fills a traveling niche for trips too long for walking yet possibly costly and inneficient for driving.
+<br>
+We observe that the distribution of riding distance is slighly positively skewed, since the mean is greater than the median, in part due to the large number of short-distance trips.
+<br><br>
+<img class="center" src="https://raw.githubusercontent.com/HP-Nunes/SMCapstone_JupyterBook/master/assets/img/content/KPI_Connectivity_Distribution.png"> 
+<br><br>
+This beg the question: <b>what variables are affecting distance in the dataset?</b>
+<br>
+The most self-evident factor is the difference between <b>bike type</b>, i.e. electric bikes and non-electric bikes. If we look at distance between these categories, the difference in riding distance becomes discernable:
+<br><br>
+<img src="https://raw.githubusercontent.com/HP-Nunes/SMCapstone_JupyterBook/master/assets/img/content/KPI_Connectivity_1.png"> 
+<br><br>
+Unsurprisingly, electric bikes lead the average and median distance covered (both outpace respectively the mean and median of the entire dataset). For our purposes, we are assuming that 'docked bikes' and 'classic bikes' are both the non-electric bikes, 'classic bike' being a categorical label which was introduced at a latter stage in Bay Wheels' data collection process (without metadata to verify this claim, I'm making an informed assumptions based on my experience wrangling the raw dataset). <b>The main observation is that e-bike riders cover <b>20% more travel distance</b> on average (this is true for median distance as well) compared to the distance covered by non-ebike riders (averaging the mean distance of 'classic' and 'docked' bikes).</b>
+<br><br>
+If we compare distance as a factor of <b>trip type</b>, we observe that dockless rides, whether at the pick-up or drop-off points or both, tend to cover longer distances compared to the overall mean average. The reason for this is likely two-folds: 1) all dockless rides involve e-bikes (these are the only bikes that have a build-in lock), and as we know, e-bikes cover more distance on average than non e-bikes; & 2) dockless trips offer a wider coverage of areas that can be travelled in the absence of docking stations. Meaning: a trip is likely to increase in distance in areas where docking stations are either absent or present in low-density. 
+<br><br>
+<img align="center" src="https://raw.githubusercontent.com/HP-Nunes/SMCapstone_JupyterBook/master/assets/img/content/KPI_Connectivity_3.png"> 
+</div>
+<div class="section" id="apropos-the-data">
+<h2>Apropos the data<a class="headerlink" href="#apropos-the-data" title="Permalink to this headline">¶</a></h2>
+<p>Although the raw datasets provide the location of the start- and end-point of each trip, with timestamps to measure the duration of rides, it does not provide a measure of the distance covered. What I did therefore, for the main dataset of 5M+ datapoints, was to simply calculate <a href='https://en.wikipedia.org/wiki/Euclidean_distance#:~:text=In%20mathematics%2C%20the%20Euclidean%20distance,being%20called%20the%20Pythagorean%20distance' target="_blank">Euclidean Distance</a> between each point. This serves a useful purpose to establish the <em>minimal distance</em> between two locations, however, as you all know, people can not move like birds, and get to their destination in a linear fashion.</p>
+<p>Henceforth, a workaround solution: using <a href='https://developers.google.com/maps/documentation/distance-matrix/overview' target="_blank">Google’s Distance Matrix API</a>, we can have an estimate of the <a href='https://www.igi-global.com/dictionary/network-distance/20119' target="_blank">Network Distance</a>, i.e. the shortest path distance between two points following a path, like a road. Furthermore, Google’s API provides an option to estimate the optimal Network Distance for bicycle rides. Now, this also poses a normative conandrum: people don’t necessarily ‘optimize’ their routes between A and B, and even if they do, traffic and the entropy of sharing the road does not always yield an optimal trip by distance and time. But it’s the best option that we have with our current limitations, and offers much better real-world accuracy compared to Euclidean Distance.</p>
+<p>However, a snaffu is that Google’s Distance Matrix API is a paid service (which can be offset thanks to <a href='https://cloud.google.com/free' target="_blank">Google Cloud’s free trial offer</a>; yet, even with $300 worth of credit, running the API through 5M+ datapoints will do me no good. Statistics is the art of frugality, therefore I had to be selective in choosing the sample of trips I wanted distance estimates for.</p>
+<p>Another hiccup is the limitation of the spatial resolution innate in the dataset. Now, datapoints starting and ending at docked stations have a high degree of spatial resolution, however, dockless trips, understandably out of the ethical necessity to maintain the privacy of its users, yield a much lower spatial resolution (up to only two or three decimal places on each start- and end-point’s geographic coordinates). Additionally, these points are laid-out in a grid-like fashion, to further anonymise the directionality and density of those trips. But this level of accuracy is good enough to aggregate these trips by neighborhoods and census tracts. However, running Google’s API on dockless trips will yield a less accurate estimate of distance compared to docked trips.</p>
+<p>And I’m afraid we’re not quite done yet: you see, some trips start and end at the <em>same location</em>! These are what I call ‘looped’ trips. For dockless trips, this is possibly a post-processing artifact from rounding-up coordinates. For docked trips however, and I was quite surprised to observe this in the dataset, ‘looped’ trips, which start and end at the same pick-up/drop-off station, are quite popular! The good news is that I can make certain inferences about ridership behavior by location and time (for example, ‘looped trips’ in touristy areas might serve as a choice alternative to rental bikes). The bad news is…we can’t estimate accurately for a distance…What I can do if I so choose instead is to interpolate by taking the average of meter distance covered by seconds, for example, and apply it to the time elapsed for those trips. But that’s beside what we’re trying to accomplish for this particular KPI.</p>
+<p>As you understand, we are required to be strategic about getting the most out of the dataset, and be deliberate on how to select representative samples over different data dimensionalities.</p>
+<!-- ## 1. A bike! a bike! my city for a bike! -->
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./content/section2"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="thebigpicture.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">The Big Picture</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="temporal_trends.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Temporal Analysis</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By HP-Nunes<br/>
+        
+            &copy; Copyright 2021.<br/>
+          <div class="extra_footer">
+            <script>mermaid.init();</script> <div class="container-lg mt-3"> <div class="row"> <div class="footerImages"> <a href="https://github.com/HP-Nunes" target="_blank"><img src="https://img.shields.io/badge/github%20-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white" alt="GitHub"></a> <a href="https://twitter.com/geocuriosity" target="_blank"><img src="https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white" alt="@geocuriosity"></a> <a href="https://www.linkedin.com/in/hp-nunes/" target="_blank"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"></a> <a class="reference external" href="https://jupyter.org/try" target="_blank"><img src="https://img.shields.io/badge/Made%20with-Jupyter-orange?style=for-the-badge&logo=Jupyter" alt="Made withJupyter"></a> </div> <div class="container-lg mt-3"> <a href="mailto:contact@hpnunes.com"><img src="https://img.shields.io/badge/Contact%20me-contact%40hpnunes.com-9cf" alt="contact@hpnunes.com"></a> <a href="https://hpnunes.com/" target="_blank"><img src="https://img.shields.io/badge/My%20website-https%3A%2F%2Fhpnunes.com%2F-blue" alt="https://hpnunes.com/"></a> <a href="https://github.com/HP-Nunes/HP-Nunes.github.io" target="_blank"><img src="https://img.shields.io/github/last-commit/HP-Nunes/HP-Nunes.github.io" alt="update to project's repo"></a> </div> <div class="row_footer my-3"> © 2020-2022 </div>
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

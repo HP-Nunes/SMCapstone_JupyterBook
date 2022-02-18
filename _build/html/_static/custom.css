@@ -836,9 +836,9 @@ div.col-12.col-md-3.bd-sidebar.site-navigation.show {
   background-image: linear-gradient(#f1f1f1, #f1f1f1);
 }
 
-#prev-link, #next-link {
+/* #prev-link, #next-link {
     background: #11111F;
-}
+} */
 
 ::-webkit-scrollbar-thumb {
     background: #300861;
